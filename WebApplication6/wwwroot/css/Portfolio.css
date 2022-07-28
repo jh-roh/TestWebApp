@@ -1,0 +1,9 @@
+﻿
+@import url('portfolio.css');
+.portfolio-item-image {
+    height:180px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size : cover;
+    opacity: .8;
+}
