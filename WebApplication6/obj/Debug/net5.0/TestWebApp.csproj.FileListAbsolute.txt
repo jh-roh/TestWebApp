@@ -37,9 +37,10 @@ C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Ra
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Contact.cshtml.g.cs
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Pricing.cshtml.g.cs
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Faq.cshtml.g.cs
-C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Portfolio-item.cshtml.g.cs
-C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Portfolio-overview.cshtml.g.cs
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Blog\Blog-home.cshtml.g.cs
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Blog\Blog-post.cshtml.g.cs
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\_ViewImports.cshtml.g.cs
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\_ViewStart.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Portfolios\Index.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Portfolios\Details.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Portfolios\List.cshtml.g.cs

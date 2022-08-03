@@ -2,7 +2,10 @@
 @using TestWebApp.Models
 @using TestWebApp.Services
 
+@inject PortfolioServiceJsonFile PortfolioService
+
 @{
+    ViewBag.Title = "My Blog";
     //string[] portfolios = { "One", "Two", "Three", "Four"};
 
     //List<Portfolio> portfolios = new List<Portfolio>()
@@ -12,12 +15,8 @@
     //    new Portfolio { Id = 3, Title = "JavaScript", Description = "React"}
     //};
 
-    var portfolios = (new PortfolioServiceJsonFile()).GetPortfolios();
-
-
-
-
-
+    //var portfolios = (new PortfolioServiceJsonFile()).GetPortfolios();
+    var portfolios = PortfolioService.GetPortfolios();
 }
 
 <!-- Header-->

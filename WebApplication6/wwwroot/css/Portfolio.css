@@ -1,9 +1,14 @@
 ﻿
 @import url('portfolio.css');
 .portfolio-item-image {
-    height:180px;
+    height:400px;
+    width:400px;
     background-position: center;
     background-repeat: no-repeat;
     background-size : cover;
     opacity: .8;
+}
+
+.portfolio-item-container {
+    text-align: center;
 }
