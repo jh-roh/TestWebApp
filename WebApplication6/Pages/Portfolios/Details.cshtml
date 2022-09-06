@@ -1,14 +1,17 @@
 ﻿@page
 @using TestWebApp.Models
 @using TestWebApp.Services
-
 @model TestWebApp.Pages.Portfolios.DetailsModel
 
 @{
     ViewBag.Title = "Portfolio Detail";
+    Layout = "_LayoutPortfolio";
 }
+
+@using TestWebApp.Components
  <!-- Page Content-->
 <section class="py-5">
+    <h2>Razor Page 사용 출력</h2>
     <div class="container px-5 my-5">
         <div class="text-center mb-5">
             <h1 class="fw-bolder">Our Work</h1>
@@ -49,6 +52,14 @@
                 </div>*@
         </div>
     </div>
+
+
+    <!-- /.row-->
+
+    <hr />
+
+    <component type="typeof(PortfolioListrazor)" render-mode="ServerPrerendered" />
+
 </section>
 <section class="py-5 bg-light">
     <div class="container px-5 my-5">

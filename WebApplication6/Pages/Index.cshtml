@@ -1,4 +1,5 @@
 @page
+@using TestWebApp.Components
 @using TestWebApp.Models
 @using TestWebApp.Services
 
@@ -6,6 +7,7 @@
 
 @{
     ViewBag.Title = "My Blog";
+    Layout = "_LayoutPortfolio";
     //string[] portfolios = { "One", "Two", "Three", "Four"};
 
     //List<Portfolio> portfolios = new List<Portfolio>()
@@ -89,6 +91,10 @@
     </div>
 </section>
 
+
+<div>
+    <component type="typeof(PortfolioListrazor)" render-mode="ServerPrerendered" />
+</div>
 
 
 

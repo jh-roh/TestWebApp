@@ -1,0 +1,126 @@
+﻿@using TestWebApp.Models
+@using TestWebApp.Services
+@using Microsoft.AspNetCore.Components.Web
+@inject PortfolioServiceJsonFile PortfolioService
+
+<h2>blazor Component 사용 출력</h2>
+<div class="container px-5 my-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bolder">Our Work</h1>
+        <p class="lead fw-normal text-muted mb-0">Company portfolio</p>
+    </div>
+    <div class="row gx-5">
+
+        @foreach (var item in PortfolioService.GetPortfolios())
+        {
+            <div class="col-lg-6 portfolio-list">
+                <div class="position-relative mb-5 card">
+                    <img class="portfolio-item-image" src="@item.Image" />
+
+                    <div class="portfolio-item-container">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" @onclick="() => SelectPoprtfolio(item.Id)" data-bs-toggle="modal" data-bs-target="#portfolioModal">
+                            @item.Title
+                        </button>
+                        @*<a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">@item.Title</a>*@
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+@if(selectedPortfolio != null)
+{
+    <!-- Modal -->
+    <div class="modal fade" id="portfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@selectedPortfolio.Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-6">
+                        <div class="position-relative mb-5">
+                            <img class="portfolio-item-image" src="@selectedPortfolio.Image" />
+
+                        </div>
+                        <div class="portfolio-item-container">
+                            <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">@selectedPortfolio.Title</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @if( voteCount == 0)
+                    {
+                        <span>투표하세요</span>
+                    }
+                    else
+                    {
+                        <span>@voteLabel, @voteCount</span>
+                    }
+                    @for (int i = 1; i < 6; i++)
+                    {
+                        var currentStart = i;
+
+                        if(i <= currentRating)
+                        {
+                            <span @onclick="() => ClickOnTheStar(currentStart)">★</span>
+                        }
+                        else
+                        {
+                            <span @onclick="() => ClickOnTheStar(currentStart)">☆</span>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+
+@code {
+    Portfolio selectedPortfolio = new Portfolio();
+    int currentRating = 0;
+
+    int voteCount = 0;
+    string voteLabel;
+
+    void SelectPoprtfolio(int portfolioId)
+    {
+        selectedPortfolio = PortfolioService.GetPortfolios().First(p => p.Id == portfolioId);
+
+        if (selectedPortfolio.Ratings == null)
+        {
+            currentRating = 0;
+            voteCount = 0;
+
+        }
+        else
+        {
+            voteCount = selectedPortfolio.Ratings.Count();
+
+            voteLabel = (voteCount > 1) ? "Votes" : "Vote";
+
+            currentRating = selectedPortfolio.Ratings.Sum();
+        }
+
+
+    }
+
+
+    void ClickOnTheStar(int rating)
+    {
+        PortfolioService.AddRating(selectedPortfolio.Id, rating);
+
+        SelectPoprtfolio(selectedPortfolio.Id);
+    }
+}

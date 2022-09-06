@@ -15,6 +15,7 @@ namespace TestWebApp.Models
         [JsonPropertyName("img")]
         public string Image { get; set; }
 
+        public int[] Ratings { get; set; }
 
         public override string ToString()
         {

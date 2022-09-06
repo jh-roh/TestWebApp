@@ -44,3 +44,9 @@ C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Ra
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Portfolios\Index.cshtml.g.cs
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Portfolios\Details.cshtml.g.cs
 C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Portfolios\List.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\TestWebApp.RazorComponent.input.cache
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\RazorDeclaration\Components\PortfolioListrazor.razor.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\TestWebApp.RazorComponent.output.cache
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\RazorDeclaration\TestWebApp.dll
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Components\PortfolioListrazor.razor.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\obj\Debug\net5.0\Razor\Pages\Shared\_LayoutPortfolio.cshtml.g.cs
