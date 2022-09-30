@@ -1,0 +1,12 @@
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\bin\Debug\net5.0\TestWebApp.DotNetNote.Models.deps.json
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\bin\Debug\net5.0\TestWebApp.DotNetNote.Models.dll
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\bin\Debug\net5.0\TestWebApp.DotNetNote.Models.pdb
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\TestWebApp.DotNetNote.Models.csproj.AssemblyReference.cache
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\TestWebApp.DotNetNote.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\TestWebApp.DotNetNote.Models.AssemblyInfoInputs.cache
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\TestWebApp.DotNetNote.Models.AssemblyInfo.cs
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\TestWebApp.DotNetNote.Models.csproj.CoreCompileInputs.cache
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\TestWebApp.DotNetNote.Models.dll
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\refint\TestWebApp.DotNetNote.Models.dll
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\TestWebApp.DotNetNote.Models.pdb
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote.Models\obj\Debug\net5.0\ref\TestWebApp.DotNetNote.Models.dll
