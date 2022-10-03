@@ -1,0 +1,24 @@
+﻿@model TestWebApp.NoticBoard.ViewModel.LoginViewModel
+
+<h2>로그인</h2>
+
+<form method="post" asp-controller="Account" asp-action="Login">
+    <div class="text-danger" asp-validation-summary="ModelOnly">
+
+    </div>
+   <div class="form-group">
+       <label>사용자 ID</label>
+        <input type="text" asp-for="UserID" class="form-control" placeholder="사용자 ID" />
+        <span class="text-danger" asp-validation-for="UserID"></span>
+   </div>
+
+   <div class="form-group">
+       <label>비밀번호</label>
+        <input type="password" asp-for="UserPassword" class="form-control" placeholder="사용자 비밀번호" />
+       <span class="text-danger" asp-validation-for="UserPassword"></span>
+
+   </div>
+   <div class="form-group">
+       <button type="submit" class="btn btn-success">로그인</button>
+   </div>
+</form>

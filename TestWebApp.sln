@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWebApp.Identity", "Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWebApp.DotNetNote", "TestWebApp.DotNetNote\TestWebApp.DotNetNote.csproj", "{2872E74D-9FB3-4517-B0AC-A656FAB32F43}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWebApp.NoticBoard", "TestWebApp.NoticBoard\TestWebApp.NoticBoard.csproj", "{16B5EF59-447C-4C51-AD7C-036A65EC06E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2872E74D-9FB3-4517-B0AC-A656FAB32F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2872E74D-9FB3-4517-B0AC-A656FAB32F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2872E74D-9FB3-4517-B0AC-A656FAB32F43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16B5EF59-447C-4C51-AD7C-036A65EC06E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16B5EF59-447C-4C51-AD7C-036A65EC06E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16B5EF59-447C-4C51-AD7C-036A65EC06E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16B5EF59-447C-4C51-AD7C-036A65EC06E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
