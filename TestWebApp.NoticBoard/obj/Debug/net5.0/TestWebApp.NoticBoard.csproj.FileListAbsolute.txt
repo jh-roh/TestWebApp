@@ -66,8 +66,14 @@ D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\TestWebApp.NoticB
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\TestWebApp.NoticBoard.TagHelpers.output.cache
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\TestWebApp.NoticBoard.RazorCoreGenerate.cache
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
+D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Home\LoginSuccess.cshtml.g.cs
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
+D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Note\Add.cshtml.g.cs
+D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Note\Edit.cshtml.g.cs
+D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Note\Index.cshtml.g.cs
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
@@ -83,6 +89,3 @@ D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\refint\TestWebApp
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\TestWebApp.NoticBoard.pdb
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\TestWebApp.NoticBoard.genruntimeconfig.cache
 D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\ref\TestWebApp.NoticBoard.dll
-D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
-D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
-D:\WebSource\TestWebApp\TestWebApp.NoticBoard\obj\Debug\net5.0\Razor\Views\Home\LoginSuccess.cshtml.g.cs
