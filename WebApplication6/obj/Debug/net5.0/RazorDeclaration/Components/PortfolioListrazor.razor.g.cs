@@ -13,21 +13,21 @@ namespace TestWebApp.Components
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\Components\PortfolioListrazor.razor"
+#line 1 "D:\WebSource\TestWebApp\WebApplication6\Components\PortfolioListrazor.razor"
 using TestWebApp.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\Components\PortfolioListrazor.razor"
+#line 2 "D:\WebSource\TestWebApp\WebApplication6\Components\PortfolioListrazor.razor"
 using TestWebApp.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\Components\PortfolioListrazor.razor"
+#line 3 "D:\WebSource\TestWebApp\WebApplication6\Components\PortfolioListrazor.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
@@ -41,7 +41,7 @@ using Microsoft.AspNetCore.Components.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 90 "C:\Users\jh.roh\source\repos\WebApplication6\WebApplication6\Components\PortfolioListrazor.razor"
+#line 90 "D:\WebSource\TestWebApp\WebApplication6\Components\PortfolioListrazor.razor"
        
     Portfolio selectedPortfolio = new Portfolio();
     int currentRating = 0;
