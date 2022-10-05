@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<h1>Quiz</h1>
+
+넘어온 값(ViewBag.Page)  : @ViewBag.Page<br />
+넘어온 값(ViewBag.Id)    : @ViewBag.Id<br />
+넘어온 값(ViewData["Id"]) : @ViewData["Id"]<br />
+넘어온 값(ViewData["Page"]) : @ViewData["Page"]<br />
+
+<hr/>
+
+<form action="/Basic/Quiz" method="post">
+    <input type="text" name="answer" value="" />
+    <input type="submit" name="btnSave" value="전송" />
+
+</form>
+
+@ViewBag.Answer

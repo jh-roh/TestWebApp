@@ -47,6 +47,24 @@ namespace TestWebApp.NoticBoard
         {
             if (env.IsDevelopment())
             {
+                // code to be executed in development environment 
+
+            }
+
+            if (env.IsStaging())
+            {
+                // code to be executed in staging environment 
+
+            }
+
+            if (env.IsProduction())
+            {
+                // code to be executed in production environment 
+
+            }
+
+            if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }

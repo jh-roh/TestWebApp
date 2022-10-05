@@ -178,3 +178,11 @@ D:\WebSource\TestWebApp\TestWebApp.DotNetNote\obj\Debug\net5.0\refint\TestWebApp
 D:\WebSource\TestWebApp\TestWebApp.DotNetNote\obj\Debug\net5.0\TestWebApp.DotNetNote.pdb
 D:\WebSource\TestWebApp\TestWebApp.DotNetNote\obj\Debug\net5.0\TestWebApp.DotNetNote.genruntimeconfig.cache
 D:\WebSource\TestWebApp\TestWebApp.DotNetNote\obj\Debug\net5.0\ref\TestWebApp.DotNetNote.dll
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote\obj\Debug\net5.0\Razor\Views\Basic\Index.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote\obj\Debug\net5.0\Razor\Views\Basic\Unit.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote\obj\Debug\net5.0\Razor\Views\Basic\Quiz.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote\obj\Debug\net5.0\Razor\Views\Basic\Review.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote\obj\Debug\net5.0\Razor\Views\Basic\Analysis.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote\obj\Debug\net5.0\Razor\Views\Demo\ViewBagDemo.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote\obj\Debug\net5.0\Razor\Views\Demo\ViewWithModelDemo.cshtml.g.cs
+C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetNote\obj\Debug\net5.0\Razor\Views\Demo\ViewWithListOfDemo.cshtml.g.cs

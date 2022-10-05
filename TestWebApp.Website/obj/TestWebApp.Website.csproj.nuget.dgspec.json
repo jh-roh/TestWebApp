@@ -1,29 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WebSource\\TestWebApp\\TestWebApp.Website\\TestWebApp.Website.csproj": {}
+    "C:\\Users\\jh.roh\\source\\repos\\WebApplication6\\TestWebApp.Website\\TestWebApp.Website.csproj": {}
   },
   "projects": {
-    "D:\\WebSource\\TestWebApp\\TestWebApp.Website\\TestWebApp.Website.csproj": {
+    "C:\\Users\\jh.roh\\source\\repos\\WebApplication6\\TestWebApp.Website\\TestWebApp.Website.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WebSource\\TestWebApp\\TestWebApp.Website\\TestWebApp.Website.csproj",
+        "projectUniqueName": "C:\\Users\\jh.roh\\source\\repos\\WebApplication6\\TestWebApp.Website\\TestWebApp.Website.csproj",
         "projectName": "TestWebApp.Website",
-        "projectPath": "D:\\WebSource\\TestWebApp\\TestWebApp.Website\\TestWebApp.Website.csproj",
-        "packagesPath": "C:\\Users\\nonono\\.nuget\\packages\\",
-        "outputPath": "D:\\WebSource\\TestWebApp\\TestWebApp.Website\\obj\\",
+        "projectPath": "C:\\Users\\jh.roh\\source\\repos\\WebApplication6\\TestWebApp.Website\\TestWebApp.Website.csproj",
+        "packagesPath": "C:\\Users\\jh.roh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jh.roh\\source\\repos\\WebApplication6\\TestWebApp.Website\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\nonono\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jh.roh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -87,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

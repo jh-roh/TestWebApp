@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using TestWebApp.NoticBoard.DataContext;
@@ -20,10 +21,33 @@ namespace TestWebApp.NoticBoard.Controllers
         /// <returns></returns>
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                //로그인이 안된 상태
+                return RedirectToAction("Login", "Account");
+            }
 
             var list = _DbContext.Notes.ToList();
             
             return View(list);
+        }
+
+        /// <summary>
+        /// 게시판 상세
+        /// </summary>
+        /// <param name="noteNo"></param>
+        /// <returns></returns>
+        public IActionResult Detail(int noteNo)
+        {
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                //로그인이 안된 상태
+                return RedirectToAction("Login", "Account");
+            }
+
+            var note = _DbContext.Notes.FirstOrDefault(p => p.NoteNo.Equals(noteNo));
+
+            return View(note);
         }
 
         /// <summary>
@@ -38,7 +62,15 @@ namespace TestWebApp.NoticBoard.Controllers
         [HttpPost]
         public IActionResult Add(Note model)
         {
-            if(ModelState.IsValid)
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                //로그인이 안된 상태
+                return RedirectToAction("Login", "Account");
+            }
+
+            model.UserNo = (int)HttpContext.Session.GetInt32("USER_LOGIN_KEY");
+
+            if (ModelState.IsValid)
             {
                 _DbContext.Notes.Add(model);
 
@@ -58,6 +90,12 @@ namespace TestWebApp.NoticBoard.Controllers
         /// <returns></returns>
         public IActionResult Edit()
         {
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                //로그인이 안된 상태
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
 
@@ -67,7 +105,14 @@ namespace TestWebApp.NoticBoard.Controllers
         /// <returns></returns>
         public IActionResult Detete()
         {
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                //로그인이 안된 상태
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
+
     }
 }

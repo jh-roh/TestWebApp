@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<DemoModel>
+@{
+    Layout = null;
+}
+
+
+
+<h2>컬렉션 형태로 출력</h2>
+
+
+<ul>
+    <li><p>@Model[0].Id, @Model[0].Name</p></li>
+    <li><p>@Model[1].Id, @Model[1].Name</p></li>
+    <li><p>@Model[2].Id, @Model[2].Name</p></li>
+</ul>
+
+<ul>
+    @foreach(var m in Model)
+    {
+        <li>@m.Id, @m.Name</li>
+    }
+</ul>
