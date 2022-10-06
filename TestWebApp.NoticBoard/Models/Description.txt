@@ -1,0 +1,24 @@
+﻿ASP.NET Core
+
+1. ASP.NET Core 1.0 ~ 3.1 => .NET 5.0 ~ 6.0
+  - 크로스 플랫폼 지원
+ 
+2. Entity Framework Core Code First
+  - Add-Migration, Update DataBase
+  - 의존성 주입을 통한 DB Context 사용 가능
+
+
+3. 미들웨어 사용 (Startup.cs 파일)
+ - 웹 성능 및 크로스 플랫폼 고려
+ - UseStaticFiles, UseSession, Authentication 등등 
+
+4. 기본 프로젝트 형식
+ - _Layout.cshtml => 레이아웃 프레임, RenderBody()
+ - _ViewStart => 대표 레이아웃 프레임 설정
+ - _ViewImport => NameSpace 및 Helper 등 전역적으로 설정 가능
+ - TagHelper 기능 => HTML 태그에 Helper를 적용하여, 편의 기능 사용 가능
+ 
+5. MVC 패턴 적용 
+  - Model, View, Controller 형식의 패턴을 사용
+  - Controller/Action 
+  - Controller 단에서 값을 전달 받아, View쪽으로 모델 전달 가능
