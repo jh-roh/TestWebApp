@@ -6,3 +6,14 @@ TestWebApp.DotNetSale/bin/
 TestWebApp.Identity/bin/
 TestWebApp.NoticBoard/bin/
 TestWebApp.Website/bin/
+
+TestWebApp.AuthenticationAuthorization/obj/
+TestWebApp/obj/
+TestWebApp.Database/obj/
+TestWebApp.DotNetNote/obj/
+TestWebApp.DotNetSale/obj/
+TestWebApp.Identity/obj/
+TestWebApp.NoticBoard/obj/
+TestWebApp.Website/obj/
+
+.vs
