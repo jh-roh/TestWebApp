@@ -1,3 +1,4 @@
+WebApplication6/bin/
 TestWebApp.AuthenticationAuthorization/bin/
 TestWebApp/bin/
 TestWebApp.Database/bin/
@@ -7,6 +8,7 @@ TestWebApp.Identity/bin/
 TestWebApp.NoticBoard/bin/
 TestWebApp.Website/bin/
 
+WebApplication6/obj/
 TestWebApp.AuthenticationAuthorization/obj/
 TestWebApp/obj/
 TestWebApp.Database/obj/
