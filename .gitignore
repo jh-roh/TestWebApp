@@ -1,0 +1,8 @@
+TestWebApp.AuthenticationAuthorization/bin/
+TestWebApp/bin/
+TestWebApp.Database/bin/
+TestWebApp.DotNetNote/bin/
+TestWebApp.DotNetSale/bin/
+TestWebApp.Identity/bin/
+TestWebApp.NoticBoard/bin/
+TestWebApp.Website/bin/

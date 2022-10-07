@@ -1,0 +1,9 @@
+2022-10-07 13:34:42.484 +09:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-07 13:34:42.497 +09:00 [INF] Hosting environment: Development
+2022-10-07 13:34:42.499 +09:00 [INF] Content root path: C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetSale
+2022-10-07 13:34:42.586 +09:00 [INF] Home - Index 페이지가 로드되었습니다.
+2022-10-07 13:34:44.324 +09:00 [INF] Home - Index 페이지가 로드되었습니다.
+2022-10-07 13:34:46.591 +09:00 [INF] Home - Privacy 페이지가 로드되었습니다.
+2022-10-07 13:57:11.346 +09:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-07 13:57:11.362 +09:00 [INF] Hosting environment: Development
+2022-10-07 13:57:11.364 +09:00 [INF] Content root path: C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetSale
