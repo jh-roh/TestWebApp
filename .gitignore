@@ -19,3 +19,5 @@ TestWebApp.NoticBoard/obj/
 TestWebApp.Website/obj/
 
 .vs/
+/TestWebApp.Database/TestWebApp.Database.jfm
+/TestWebApp.Database/TestWebApp.Database.dbmdl
