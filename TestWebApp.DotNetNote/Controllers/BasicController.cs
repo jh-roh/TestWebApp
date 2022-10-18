@@ -23,7 +23,10 @@ namespace TestWebApp.DotNetNote.Controllers
 
         public IActionResult Unit()
         {
-            return View();
+            string htmlTag = "<h1>테스트 입니다. 안녕하세요</h1>";
+
+
+            return View((object)htmlTag);
         }
 
         [HttpGet] //생략 가능

@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+    TagHelpers 기능 사용 불가
+    asp-area="" asp-controller="Home" asp-action="Index"
+
+*@
+@{
+}
+
+<div class="wrapper">
+    <nav id="sidebar">
+        <ul class="list-unstyled components">
+            <li class="nav-item" style="height:50px; margin-top:10px;margin-bottom:15px">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="height:62px" >
+                    <text style="font-weight:bold; font-size:18px">메인 메뉴</text>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="height:62px" asp-area="">
+                    <text style="font-weight:bold; font-size:18px">처방 메뉴</text>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="height:62px" asp-area="">
+                    <text style="font-weight:bold; font-size:18px">물품 이력 메뉴</text>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="height:62px" asp-area="" >
+                    <text style="font-weight:bold; font-size:18px">약품 사용량 메뉴</text>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="height:62px" asp-area="">
+                    <text style="font-weight:bold; font-size:18px">물품 현황</text>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background: #DCE6EE;margin-top:10px; padding-right:20px;">
+            <div class="container-fluid">
+
+                <a class="nav-link">
+                </a>
+                <a class="BI-Text">
+                    WEB MANAGEMENT
+                </a>
+                <button class="btn d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+                </button>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <main id="RenderMain" role="main" class="pb-3" style="padding: 10px 20px 0px 20px;">
+                메인 영역입니다.
+             
+            </main>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,8 @@ TestWebApp.DotNetSale/bin/
 TestWebApp.Identity/bin/
 TestWebApp.NoticBoard/bin/
 TestWebApp.Website/bin/
+TestWebApp.DevExtreme/bin/
+TestWebApp.RazorEngineCore/bin/
 
 WebApplication6/obj/
 TestWebApp.AuthenticationAuthorization/obj/
@@ -17,5 +19,9 @@ TestWebApp.DotNetSale/obj/
 TestWebApp.Identity/obj/
 TestWebApp.NoticBoard/obj/
 TestWebApp.Website/obj/
+TestWebApp.DevExtreme/obj/
+TestWebApp.RazorEngineCore/obj/
 
 .vs/
+/TestWebApp.Database/TestWebApp.Database.dbmdl
+/TestWebApp.Database/TestWebApp.Database.jfm
