@@ -23,5 +23,5 @@ TestWebApp.DevExtreme/obj/
 TestWebApp.RazorEngineCore/obj/
 
 .vs/
-/TestWebApp.Database/TestWebApp.Database.dbmdl
 /TestWebApp.Database/TestWebApp.Database.jfm
+/TestWebApp.Database/TestWebApp.Database.dbmdl
