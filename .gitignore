@@ -9,6 +9,13 @@ TestWebApp.NoticBoard/bin/
 TestWebApp.Website/bin/
 TestWebApp.DevExtreme/bin/
 TestWebApp.RazorEngineCore/bin/
+Note.BLL/bin/
+Note.DAL.MSSQL/bin/
+Note.IDAL/bin/
+Note.Model/bin/
+Note.MVC/bin/
+Note.Oracle.DAL/bin/
+
 
 WebApplication6/obj/
 TestWebApp.AuthenticationAuthorization/obj/
@@ -21,6 +28,13 @@ TestWebApp.NoticBoard/obj/
 TestWebApp.Website/obj/
 TestWebApp.DevExtreme/obj/
 TestWebApp.RazorEngineCore/obj/
+Note.BLL/obj/
+Note.DAL.MSSQL/obj/
+Note.IDAL/obj/
+Note.Model/obj/
+Note.MVC/obj/
+Note.Oracle.DAL/obj/
+
 
 .vs/
 /TestWebApp.Database/TestWebApp.Database.jfm

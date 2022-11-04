@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-TestWebApp.DotNetNote-7A0BCDB7-E92B-47BC-B16E-2E81063E0BC9</UserSecretsId>
+    <UserSecretsId>aspnet-Note.MVC-3B903202-88C4-4B96-9A5A-E36F589F8AB6</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +11,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17" />
-    <PackageReference Include="RazorEngineCore" Version="2022.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Note.BLL\Note.BLL.csproj" />
+    <ProjectReference Include="..\Note.Model\Note.Model.csproj" />
+    <ProjectReference Include="..\Note.Oracle.DAL\Note.Oracle.DAL.csproj" />
   </ItemGroup>
 
 </Project>
