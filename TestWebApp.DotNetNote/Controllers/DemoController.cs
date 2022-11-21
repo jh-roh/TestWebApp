@@ -20,7 +20,7 @@ namespace TestWebApp.DotNetNote.Controllers
             ViewBag.원하는모든단어 = "모든 값...";
 
             ViewData["Address"] = "세종시";
-
+            //ViewBag.Address = "세종시";
               
             return View();
         }
