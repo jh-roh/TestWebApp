@@ -1,0 +1,25 @@
+﻿@model TestWebApp.DotNetNote.Models.MaximModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>강력한 형식의 뷰</title>
+</head>
+<body>
+    @using(Html.BeginForm())
+    {
+        @Html.LabelFor(n => n.Name)
+        <text>: </text>
+        @Html.TextBoxFor(n => n.Name) <br/>
+        @Html.LabelFor(n => n.Content)
+        <text>: </text>
+        @Html.TextBoxFor(n => n.Content) <br/>
+
+        <input type="submit" value="입력" />
+
+       
+    }
+</body>
+</html>

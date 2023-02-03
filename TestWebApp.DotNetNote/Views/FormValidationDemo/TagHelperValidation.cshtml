@@ -1,0 +1,38 @@
+﻿@model TestWebApp.DotNetNote.Models.MaximModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery 플러그인 기반 클라이언트 측 유효성 검사</title>
+    <style>
+        .input-validation-error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+    <form asp-controller="FormValidationDemo" asp-action="TagHelperValidation" method="post">
+        <div asp-validation-summary="All"></div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+
+        <br />
+        <label asp-for="Content"></label>
+        <input asp-for="Content" />
+        <span asp-validation-for="Content" ></span>
+        <br />
+
+        <input type="submit" value="입력" />
+    </form>
+
+    
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+</body>
+</html>

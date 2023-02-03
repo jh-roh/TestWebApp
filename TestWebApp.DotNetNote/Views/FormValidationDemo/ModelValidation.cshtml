@@ -1,0 +1,36 @@
+﻿@model TestWebApp.DotNetNote.Models.MaximModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>모델 기반의 서버 측 유효성 검사</title>
+    <style>
+        .input-validation-error {
+            border : 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+
+        @Html.LabelFor(n => n.Name)
+        <text>: </text>
+        @Html.TextBoxFor(n => n.Name)
+        @Html.ValidationMessageFor(n => n.Name)
+        <br />
+        @Html.LabelFor(n => n.Content)
+        <text>: </text>
+        @Html.TextBoxFor(n => n.Content)
+        @Html.ValidationMessageFor(n => n.Content)
+        <br />
+
+        <input type="submit" value="입력" />
+
+
+    }
+</body>
+</html>

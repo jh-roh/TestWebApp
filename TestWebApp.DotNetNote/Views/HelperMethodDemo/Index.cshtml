@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<ul>
+    <li><a href="#">Index</a></li>
+    <li>
+        <a href="/HelperMethodDemo/FormDemo">폼 생성</a>
+        <a href="~/HelperMethodDemo/FormDemo">폼 생성</a>
+    </li>
+    <li>
+        @Html.ActionLink("입력 요소", "InputDemo")
+        <a href="/HelperMethodDemo/InputDemo">입력 요소</a>
+    </li>
+    <li>
+        @Html.ActionLink("선택 요소", "SelectDemo","HelperMethodDemo")
+        <a href="/HelperMethodDemo/SelectDemo">선택 요소</a>
+
+    </li>
+    <li>
+        @Html.ActionLink("강력한 형식", "StronglyTypesDemo",new {Id = 1234})
+        <a href="/HelperMethodDemo/StronglyTypesDemo">강력한 형식</a>
+
+    </li>
+</ul>
+
