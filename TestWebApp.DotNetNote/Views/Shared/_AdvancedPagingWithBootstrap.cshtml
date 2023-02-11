@@ -1,0 +1,178 @@
+﻿@model PagerBase
+
+@{
+    string url = Model.Url;
+    int RecordCount = Model.RecordCount;
+    int PageSize = Model.PageSize;
+    int PageCount = (RecordCount - 1) / PageSize + 1;
+    int PageNumber = Model.PageNumber;
+    int PagerButtonCount = Model.PagerButtonCount;
+
+    bool SearchMode = Model.SearchMode;
+    string SearchField = Model.SearchField;
+    string SearchQuery = Model.SearchQuery;
+
+
+}
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination pagination-sm">
+
+
+        @if (PageNumber == 1)
+        {
+            <li class="page-item">
+                <a href="#" class="page-link first">처음</a>
+            </li>
+
+        }
+        else
+        {
+            //검색 모드이면 추가적으로 SearchField와 SearchQuery를 전송함
+            if (SearchMode)
+            {
+
+                <li class="page-item">
+                    <a href="/@url?Page=1&SerachField=@SearchField&SearchQuery=@SearchQuery" class="page-link first">처음</a>
+
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a href="/@url?Page=1" class="page-link first">처음</a>
+
+                </li>
+            }
+        }
+
+        @if (PageNumber > PagerButtonCount)
+        {
+            if (SearchMode)
+            {
+                <li class="page-item">
+                    <a href="/@url?Page=@(((PageNumber - 1) / (int)PagerButtonCount) * PagerButtonCount)&SerachField=@SearchField&SearchQuery=@SearchQuery" class="page-link prev">이전</a>
+
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a href="/@url?Page=@(((PageNumber - 1) / (int)PagerButtonCount) * PagerButtonCount)" class="page-link prev">이전</a>
+
+                </li>
+            }
+
+
+        }
+
+        @{
+            int i = 0;
+        }
+
+        @for (i = (((PageNumber - 1) / (int)PagerButtonCount) * PagerButtonCount + 1);
+        i <= (((PageNumber - 1) / (int)PagerButtonCount + 1) * PagerButtonCount);
+        i++)
+        {
+            if (i > PageCount)
+            {
+                break; // 페이지수보다 크면 종료
+            }
+
+            //현재 보고 있는 페이지면 링크 제거
+            if (i == PageNumber)
+            {
+                <li class="page-item active">
+                    <a href="#" class="page-link">@i </a>
+
+                </li>
+            }
+            else
+            {
+
+                if (SearchMode)
+                {
+                    <li class="page-item">
+                        <a href="/@url?Page=@i&SerachField=@SearchField&SearchQuery=@SearchQuery" class="page-link">@i </a>
+
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a href="/@url?Page=@i" class="page-link">@i </a>
+
+                    </li>
+                }
+
+
+            }
+
+        }
+
+
+        @if (i <= PageCount)
+        {
+            if (SearchMode)
+            {
+                <li class="page-item">
+                    <a href="/@url?Page=@i&SerachField=@SearchField&SearchQuery=@SearchQuery" class="page-link next">다음</a>
+
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a href="/@url?Page=@i" class="page-link next">다음</a>
+
+                </li>
+            }
+        }
+        else
+        {
+            <li class="page-item">
+                <a href="#" class="page-link next">다음</a>
+
+            </li>
+        }
+
+        @if (i <= PageCount)
+        {
+            if (SearchMode)
+            {
+                <li class="page-item">
+                    <a href="/@url?Page=@PageCount&SerachField=@SearchField&SearchQuery=@SearchQuery" class="page-link last">마지막</a>
+
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a href="/@url?Page=@PageCount" class="page-link last">마지막</a>
+
+                </li>
+
+            }
+
+        }
+        else
+        {
+            <li class="page-item">
+                <a href="#" class="page-link last">마지막</a>
+
+            </li>
+        }
+
+    </ul>
+
+
+</nav>
+
+
+<hr />
+
+현재 페이지 : @Model.PageNumber
+<br />
+버튼 수 : @Model.PagerButtonCount
+<br />
+

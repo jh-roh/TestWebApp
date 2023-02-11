@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+@using TestWebApp.DotNetNote.Models
+
+@inject CopyrightService CopyrightService
+
+
+<p>
+    &copy;@CopyrightService.CopyrightString
+</p>
+
+
+<p>
+    &copy;@CopyrightService.GetCopyrightString()
+</p>

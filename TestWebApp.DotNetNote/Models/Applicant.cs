@@ -14,9 +14,16 @@ namespace TestWebApp.DotNetNote.Models
         [Required]
         public string FatherName { get; set; }
 
+        public string FatherDob { get; set; }
+
+        [Required]
+        public bool IsFatherMember { get; set; }
+
         [Required]
 
         public string MotherName { get; set; }  
 
+
+        public string MotherDob { get; set; }
     }
 }

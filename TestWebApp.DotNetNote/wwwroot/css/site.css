@@ -69,3 +69,51 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+.mePager {
+    width: 100%;
+    height : 34px;
+
+    margin-top: 40px;
+    text-align: center;
+}
+
+.mePager a {
+    display: inline-block; 
+    width: 45px;
+    height: 36px;
+    border: 1px solid #b4b4b4;
+    font-size: 13px;
+    line-height: 36px;
+}
+
+.mePager a.first {
+    font-size: 8px; vertical-align: top;
+}
+
+
+.mePager a.last {
+    font-size: 8px;
+    vertical-align: top;
+}
+
+
+.mePager a.prev {
+    font-size: 8px;
+    vertical-align: top;
+}
+
+
+.mePager a.next {
+    font-size: 8px;
+    vertical-align: top;
+}
+
+.mePager a.on {
+    background: #333;
+    border-color : #333;
+
+    color:#fff;
+
+}
