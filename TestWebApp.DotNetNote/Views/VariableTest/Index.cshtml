@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+
+@{
+    var variables = ViewBag.Variables as List<Variable>;
+}
+
+
+<ul>
+    @foreach(var v in variables)
+    {
+        <li>@v.Text - @v.Value</li>
+    }
+</ul>
