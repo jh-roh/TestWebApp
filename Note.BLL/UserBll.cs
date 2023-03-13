@@ -9,7 +9,7 @@ namespace Note.BLL
     {
         //private UserDal _userDal = new UserDal();
 
-        private IUserDal _userDal;
+        private readonly IUserDal _userDal;
 
         public UserBll(IUserDal userDal)
         {
@@ -18,12 +18,24 @@ namespace Note.BLL
 
         public User GetUser(int userNo)
         {
+            if(userNo <= 0)
+            {
+                throw new AggregateException();
+            }
+
             return _userDal.GetUser(userNo);
         }
 
         public List<User> GetUserList()
         {
-            throw new NotImplementedException();
+            return _userDal.GetUserList();
+        }
+
+        public bool SaveUser(User user)
+        {
+            if (user == null) throw new ArgumentNullException();
+
+            return _userDal.SaveUser(user);
         }
     }
 }

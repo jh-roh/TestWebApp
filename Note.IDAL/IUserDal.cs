@@ -9,5 +9,7 @@ namespace Note.IDAL
         List<User> GetUserList();
 
         User GetUser(int userNo);
+
+        bool SaveUser(User user);
     }
 }

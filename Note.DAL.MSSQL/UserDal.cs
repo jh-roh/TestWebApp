@@ -16,5 +16,10 @@ namespace Note.DAL.MSSQL
         {
             throw new NotImplementedException();
         }
+
+        public bool SaveUser(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
