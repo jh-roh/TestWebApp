@@ -1,9 +1,9 @@
 /*!
  * DevExpress Diagram (dx-diagram)
- * Version: 2.1.63
- * Build date: Tue Jul 12 2022
+ * Version: 2.1.70
+ * Build date: Wed Feb 08 2023
  * 
- * Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
+ * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
  * Read about DevExpress licensing here: https://www.devexpress.com/Support/EULAs
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1138,7 +1138,7 @@ var EventUtils = (function () {
         return window.PointerEvent;
     };
     EventUtils.isMousePointer = function (evt) {
-        return this.isPointerEvents() && evt.pointerType && evt.pointerType === "mouse";
+        return this.isPointerEvents() && ((evt.pointerType && evt.pointerType === "mouse") || (browser_1.Browser.Firefox && evt.type === "click"));
     };
     EventUtils.isTouchMode = function () {
         return browser_1.Browser.TouchUI || (window.navigator && window.navigator.maxTouchPoints > 0);
@@ -1259,6 +1259,16 @@ var ModelUtils = (function () {
             }
         }
     };
+    ModelUtils.fixConnectorBeginEndConnectionIndex = function (history, connector) {
+        if (connector.beginItem && connector.beginConnectionPointIndex === -1) {
+            var beginConnectionPointIndex = connector.beginItem.getNearestConnectionPoint(connector.points[0]);
+            history.addAndRedo(new AddConnectionHistoryItem_1.SetConnectionPointIndexHistoryItem(connector, beginConnectionPointIndex, Connector_1.ConnectorPosition.Begin));
+        }
+        if (connector.endItem && connector.endConnectionPointIndex === -1) {
+            var endConnectionPointIndex = connector.endItem.getNearestConnectionPoint(connector.points[connector.points.length - 1]);
+            history.addAndRedo(new AddConnectionHistoryItem_1.SetConnectionPointIndexHistoryItem(connector, endConnectionPointIndex, Connector_1.ConnectorPosition.End));
+        }
+    };
     ModelUtils.skipUnnecessaryRenderPoints = function (points) {
         var clonedPoints = points.map(function (p) { return p.clone(); });
         ModelUtils.removeUnnecessaryRenderPoints(clonedPoints);
@@ -1368,8 +1378,11 @@ var ModelUtils = (function () {
             history.addAndRedo(new MoveConnectorPointHistoryItem_1.MoveConnectorRightAnglePointsHistoryItem(connector.key, firstPointIndex, firstPoint, lastPointIndex, lastPoint));
     };
     ModelUtils.moveConnectorPoint = function (history, connector, pointIndex, newPosition) {
-        if (!connector.points[pointIndex].equals(newPosition))
+        if (!connector.points[pointIndex].equals(newPosition)) {
             history.addAndRedo(new MoveConnectorPointHistoryItem_1.MoveConnectorPointHistoryItem(connector.key, pointIndex, newPosition));
+            return true;
+        }
+        return false;
     };
     ModelUtils.updateConnectorAttachedPoints = function (history, model, connector) {
         history.beginTransaction();
@@ -1377,15 +1390,17 @@ var ModelUtils = (function () {
         var beginAttachedToContainer = beginContainer && (!connector.endItem || !model.isContainerItem(beginContainer, connector.endItem));
         var endContainer = connector.endItem && model.findItemCollapsedContainer(connector.endItem);
         var endAttachedToContainer = endContainer && (!connector.beginItem || !model.isContainerItem(endContainer, connector.beginItem));
+        var changed = false;
         if (beginAttachedToContainer)
-            this.updateConnectorBeginPoint(history, connector, beginContainer, (endAttachedToContainer && endContainer) || connector.endItem, function (index) { return beginContainer.getConnectionPointIndexForItem(connector.beginItem, index); });
+            changed = this.updateConnectorBeginPoint(history, connector, beginContainer, (endAttachedToContainer && endContainer) || connector.endItem, function (index) { return beginContainer.getConnectionPointIndexForItem(connector.beginItem, index); }) || changed;
         else
-            this.updateConnectorBeginPoint(history, connector, connector.beginItem, (endAttachedToContainer && endContainer) || connector.endItem);
+            changed = this.updateConnectorBeginPoint(history, connector, connector.beginItem, (endAttachedToContainer && endContainer) || connector.endItem) || changed;
         if (endAttachedToContainer)
-            this.updateConnectorEndPoint(history, connector, endContainer, function (index) { return endContainer.getConnectionPointIndexForItem(connector.beginItem, index); });
+            changed = this.updateConnectorEndPoint(history, connector, endContainer, function (index) { return endContainer.getConnectionPointIndexForItem(connector.beginItem, index); }) || changed;
         else
-            this.updateConnectorEndPoint(history, connector, connector.endItem);
+            changed = this.updateConnectorEndPoint(history, connector, connector.endItem) || changed;
         history.endTransaction();
+        return changed;
     };
     ModelUtils.updateConnectorBeginPoint = function (history, connector, beginItem, endItem, getConnectionPointIndex) {
         if (beginItem) {
@@ -1398,7 +1413,7 @@ var ModelUtils = (function () {
                 else
                     targetPoint = endItem.rectangle.center;
             var newPoint = beginItem.getConnectionPointPosition(connectionPointIndex, targetPoint);
-            this.moveConnectorPoint(history, connector, 0, newPoint.clone());
+            return this.moveConnectorPoint(history, connector, 0, newPoint.clone());
         }
     };
     ModelUtils.updateConnectorEndPoint = function (history, connector, endItem, getConnectionPointIndex) {
@@ -1406,7 +1421,7 @@ var ModelUtils = (function () {
             var connectionPointIndex = getConnectionPointIndex !== undefined ?
                 getConnectionPointIndex(connector.endConnectionPointIndex) : connector.endConnectionPointIndex;
             var newPoint = endItem.getConnectionPointPosition(connectionPointIndex, connector.points[connector.points.length - 2]);
-            this.moveConnectorPoint(history, connector, connector.points.length - 1, newPoint);
+            return this.moveConnectorPoint(history, connector, connector.points.length - 1, newPoint);
         }
     };
     ModelUtils.updateContainerConnectorsAttachedPoints = function (history, model, rootContainer, container) {
@@ -1461,7 +1476,7 @@ var ModelUtils = (function () {
     ModelUtils.updateShapeAttachedConnectors = function (history, model, shape) {
         var _this = this;
         shape.attachedConnectors.forEach(function (connector) {
-            _this.removeConnectorIntermediatePoints(history, connector);
+            _this.tryRemoveConnectorIntermediatePoints(history, connector);
             _this.updateConnectorAttachedPoints(history, model, connector);
         });
     };
@@ -1518,7 +1533,7 @@ var ModelUtils = (function () {
         }
         return false;
     };
-    ModelUtils.removeConnectorIntermediatePoints = function (history, connector) {
+    ModelUtils.tryRemoveConnectorIntermediatePoints = function (history, connector) {
         if (this.shouldRemoveConnectorIntermediatePoints(connector, [connector.beginItem, connector.endItem]))
             this.deleteConnectorCustomPoints(history, connector);
     };
@@ -18026,7 +18041,7 @@ var MouseHandlerDragDiagramItemStateBase = (function (_super) {
         return this.startPoint.clone().offset(offset.x - pointOffset.x, offset.y - pointOffset.y);
     };
     MouseHandlerDragDiagramItemStateBase.prototype.changeConnector = function (connector) {
-        ModelUtils_1.ModelUtils.removeConnectorIntermediatePoints(this.history, connector);
+        ModelUtils_1.ModelUtils.tryRemoveConnectorIntermediatePoints(this.history, connector);
         ModelUtils_1.ModelUtils.updateConnectorAttachedPoints(this.history, this.model, connector);
     };
     return MouseHandlerDragDiagramItemStateBase;
@@ -19547,7 +19562,7 @@ var ConnectorSelectionElement = (function (_super) {
             Event_1.MouseEventElementType.ConnectorSide : Event_1.MouseEventElementType.ConnectorOrthogonalSide;
         var prevPt;
         var prevPtIndex;
-        this.renderPoints.filter(function (rp) { return !rp.skipped; }).forEach(function (pt, index) {
+        this.renderPoints.forEach(function (pt, index) {
             if (pt.skipped)
                 return;
             if (prevPt !== undefined)
@@ -29846,7 +29861,7 @@ var DiagramControl = (function () {
         this.routingModel = new ConnectorRoutingModel_1.ConnectorRoutingModel();
         this.modelManipulator = new ModelManipulator_1.ModelManipulator(this.model, this.routingModel, this.permissionsProvider);
         this.modelManipulator.onModelChanged.add(this.permissionsProvider);
-        this.history = new History_1.History(this.modelManipulator);
+        this.history = new History_1.History(this.modelManipulator, this);
         this.barManager = new BarManager_1.BarManager(this);
         this.view = new ViewController_1.ViewController(this.settings, this.barManager);
         this.commandManager = new CommandManager_1.CommandManager(this);
@@ -30091,10 +30106,6 @@ var DiagramControl = (function () {
         this.onImportData();
     };
     DiagramControl.prototype.importItemsData = function () {
-        this.model.iterateItems(function (item) {
-            if (item instanceof Connector_1.Connector)
-                item.invalidateRenderPoints();
-        });
         this.onImportData();
     };
     DiagramControl.prototype.onImportData = function () {
@@ -30430,10 +30441,21 @@ var ModelManipulator = (function () {
         this.updateModelSize();
     };
     ModelManipulator.prototype.initializeCore = function (model, routingModel) {
+        var _this = this;
         this.model = model;
         this.routingModel = routingModel;
-        if (this.routingModel)
+        if (this.routingModel) {
             this.routingModel.initialize(model);
+            model.iterateItems(function (item) {
+                if (item instanceof Connector_1.Connector) {
+                    var routingStrategy = _this.routingModel.createStrategy(item.properties.lineOption);
+                    if (routingStrategy)
+                        item.changeRoutingStrategy(routingStrategy);
+                    else
+                        item.invalidateRenderPoints();
+                }
+            });
+        }
     };
     ModelManipulator.prototype.commitPageChanges = function () {
         this.raisePageSizeChanged(this.model.pageSize.clone(), this.model.pageLandscape);
@@ -31733,7 +31755,9 @@ var MouseHandlerMoveConnectorSideState = (function (_super) {
         this.handler.tryUpdateModelSize();
     };
     MouseHandlerMoveConnectorSideState.prototype.onFinishWithChanges = function () {
-        ModelUtils_1.ModelUtils.deleteConnectorUnnecessaryPoints(this.history, this.model.findConnector(this.connectorKey));
+        var connector = this.model.findConnector(this.connectorKey);
+        ModelUtils_1.ModelUtils.deleteConnectorUnnecessaryPoints(this.history, connector);
+        ModelUtils_1.ModelUtils.fixConnectorBeginEndConnectionIndex(this.history, connector);
         this.handler.tryUpdateModelSize();
     };
     MouseHandlerMoveConnectorSideState.prototype.getDraggingElementKeys = function () {
@@ -32117,6 +32141,7 @@ var MouseHandlerMoveConnectorOrthogonalSideState = (function (_super) {
     };
     MouseHandlerMoveConnectorOrthogonalSideState.prototype.onFinishWithChanges = function () {
         ModelUtils_1.ModelUtils.deleteConnectorUnnecessaryPoints(this.history, this.connector);
+        ModelUtils_1.ModelUtils.fixConnectorBeginEndConnectionIndex(this.history, this.connector);
         this.handler.tryUpdateModelSize();
     };
     MouseHandlerMoveConnectorOrthogonalSideState.prototype.findPointIndex = function (points, index, direction) {
@@ -33985,7 +34010,9 @@ exports.History = void 0;
 var HistoryItem_1 = __webpack_require__(8);
 var Utils_1 = __webpack_require__(3);
 var History = (function () {
-    function History(modelManipulator) {
+    function History(modelManipulator, diagram) {
+        this.modelManipulator = modelManipulator;
+        this.diagram = diagram;
         this.historyItems = [];
         this.currentIndex = -1;
         this.incrementalId = -1;
@@ -33993,7 +34020,6 @@ var History = (function () {
         this.unmodifiedIndex = -1;
         this.currTransactionId = 0;
         this.onChanged = new Utils_1.EventDispatcher();
-        this.modelManipulator = modelManipulator;
     }
     History.prototype.isModified = function () {
         if (this.unmodifiedIndex === this.currentIndex)
@@ -34119,11 +34145,14 @@ var History = (function () {
         return currentItem.uniqueId;
     };
     History.prototype.undoTransaction = function () {
+        this.diagram.beginUpdateCanvas();
         var items = this.transaction.historyItems;
         while (items.length)
             items.pop().undo(this.modelManipulator);
+        this.diagram.endUpdateCanvas();
     };
     History.prototype.undoTransactionTo = function (item) {
+        this.diagram.beginUpdateCanvas();
         var items = this.transaction.historyItems;
         while (items.length) {
             var ti = items.pop();
@@ -34131,6 +34160,7 @@ var History = (function () {
             if (ti === item)
                 return;
         }
+        this.diagram.endUpdateCanvas();
     };
     History.prototype.raiseChanged = function () {
         if (this.transactionLevel === -1)
@@ -34522,6 +34552,8 @@ var RenderManager = (function () {
     };
     RenderManager.prototype.onContextMenu = function (evt) {
         var _this = this;
+        if (!this.contextMenuEnabled)
+            return;
         Utils_1.raiseEvent(evt, this.createDiagramContextMenuEvent(evt), function (e) { return _this.events.onContextMenu(e); });
         this.input.captureFocus();
         return evt_1.EvtUtils.preventEventAndBubble(evt);
@@ -37098,12 +37130,11 @@ var DataSource = (function () {
     DataSource.prototype.getItemChanges = function (oldItems, newItems, areEqual) {
         var _this = this;
         var remainedItems = oldItems.filter(function (item) { return _this.containsItem(newItems, item, areEqual); });
-        var remainedNewItems = newItems.filter(function (item) { return _this.containsItem(oldItems, item, areEqual); });
         var removedItems = oldItems.filter(function (item) { return !_this.containsItem(newItems, item, areEqual); });
         var addedItems = newItems.filter(function (item) { return !_this.containsItem(oldItems, item, areEqual); });
         return {
             remained: remainedItems.map(function (item) { return item.key; }),
-            remainedNew: remainedNewItems.map(function (item) { return item.key; }),
+            remainedNewKeys: remainedItems.map(function (item) { var _a; return (_a = newItems.find(function (i) { return areEqual(item, i); })) === null || _a === void 0 ? void 0 : _a.key; }),
             removed: removedItems.map(function (item) { return item.key; }),
             added: addedItems.map(function (item) { return item.key; })
         };
@@ -37348,7 +37379,7 @@ var DataSource = (function () {
         changes.nodes.remained.forEach(function (dataKey, index) {
             var shape = model.findShapeByDataKey(dataKey);
             if (shape)
-                shape.dataKey = changes.nodes.remainedNew[index];
+                shape.dataKey = changes.nodes.remainedNewKeys[index];
         });
         changes.nodes.added.forEach(function (dataKey) {
             var node = _this.findNode(dataKey);
@@ -37381,7 +37412,7 @@ var DataSource = (function () {
                 var toShape = model.findShapeByDataKey(edge.to);
                 var connector = model.findConnectorByDataKey(dataKey);
                 if (connector) {
-                    _this.changeConnectorPointsByDataItem(history, connector, _this.getConnectorPointsByEdge(model, edge, fromShape, toShape));
+                    _this.changeConnectorPointsByDataItem(history, connector, _this.getConnectorPointsByEdge(model, edge, fromShape, toShape, false));
                     _this.changeConnectorByDataItem(history, model, connector, fromShape, toShape, edge);
                     _this.changeItemByDataItem(history, connector, edge);
                 }
@@ -37397,7 +37428,7 @@ var DataSource = (function () {
         changes.edges.remained.forEach(function (dataKey, index) {
             var connector = model.findConnectorByDataKey(dataKey);
             if (connector)
-                connector.dataKey = changes.edges.remainedNew[index];
+                connector.dataKey = changes.edges.remainedNewKeys[index];
         });
         if (itemsToUpdate.length && updateTemplateItem)
             itemsToUpdate.forEach(function (item) { item.hasTemplate && updateTemplateItem(item); });
@@ -37523,26 +37554,27 @@ var DataSource = (function () {
             else
                 ModelUtils_1.ModelUtils.removeFromContainer(history, model, shape);
     };
-    DataSource.prototype.getConnectorPointsByEdge = function (model, edge, fromShape, toShape) {
+    DataSource.prototype.getConnectorPointsByEdge = function (model, edge, fromShape, toShape, forceCreate) {
         var result = [];
         var modelPoints = this.createModelPointFromDataSourceEdgeItemPoints(model.units, edge);
-        if (!modelPoints || modelPoints.length <= 1) {
-            if (!fromShape || !toShape)
-                return undefined;
-            result.push(fromShape.position.clone());
-            result.push(toShape.position.clone());
-            return result;
+        if (modelPoints && modelPoints.length > 1) {
+            var lastIndex = modelPoints.length - 1;
+            for (var i = 0; i <= lastIndex; i++) {
+                var modelPoint = modelPoints[i];
+                if (modelPoint !== null)
+                    result.push(modelPoint);
+                else if (!fromShape && !toShape)
+                    return undefined;
+                else if (i === 0 && fromShape)
+                    result.push(fromShape.position.clone());
+                else if (i === lastIndex && toShape)
+                    result.push(toShape.position.clone());
+            }
         }
-        var lastIndex = modelPoints.length - 1;
-        for (var i = 0; i <= lastIndex; i++) {
-            var modelPoint = modelPoints[i];
-            if (modelPoint !== null)
-                result.push(modelPoint);
-            else if (!fromShape && !toShape)
-                return undefined;
-            else if (i === 0 && fromShape)
+        else if (forceCreate) {
+            if (fromShape)
                 result.push(fromShape.position.clone());
-            else if (i === lastIndex && toShape)
+            if (toShape)
                 result.push(toShape.position.clone());
         }
         return result;
@@ -37566,7 +37598,7 @@ var DataSource = (function () {
     DataSource.prototype.createConnectorByEdge = function (history, model, selection, edge, fromShape, toShape) {
         var connector;
         var dataKey = edge.key;
-        var points = this.getConnectorPointsByEdge(model, edge, fromShape, toShape);
+        var points = this.getConnectorPointsByEdge(model, edge, fromShape, toShape, true);
         if (points && points.length > 1) {
             var insert = new AddConnectorHistoryItem_1.AddConnectorHistoryItem(points, dataKey);
             history.addAndRedo(insert);

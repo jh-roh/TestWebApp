@@ -1,9 +1,9 @@
 /*!
 * DevExtreme (dx.messages.zh-tw.js)
-* Version: 22.1.5
-* Build date: Fri Sep 02 2022
+* Version: 22.1.8
+* Build date: Wed Feb 22 2023
 *
-* Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
@@ -24,6 +24,7 @@
             Yes: "\u662f",
             No: "\u5426",
             Cancel: "\u53d6\u6d88",
+            Close: "\u95dc\u9589",
             Clear: "\u6e05\u9664",
             Done: "\u5b8c\u6210",
             Loading: "\u6b63\u5728\u8f09\u5165...",

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DevExpress.AspNetCore;
+using DevExpress.AspNetCore.Reporting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,11 +28,26 @@ namespace TestWebApp_DevExtreme
             services
                 .AddControllersWithViews()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
-        }
 
+
+            services.AddDevExpressControls();
+            services.AddMvc();
+
+            services.ConfigureReportingServices(configurator =>
+            {
+                configurator.ConfigureWebDocumentViewer(viewerConfigurator =>
+                {
+                    viewerConfigurator.UseCachedReportSourceBuilder();
+                });
+            });
+        }
+           
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseDevExpressControls();
+            System.Net.ServicePointManager.SecurityProtocol |= System.Net.SecurityProtocolType.Tls12;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

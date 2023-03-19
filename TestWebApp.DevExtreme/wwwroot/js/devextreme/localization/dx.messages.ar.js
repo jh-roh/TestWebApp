@@ -1,9 +1,9 @@
 /*!
 * DevExtreme (dx.messages.ar.js)
-* Version: 22.1.5
-* Build date: Fri Sep 02 2022
+* Version: 22.1.8
+* Build date: Wed Feb 22 2023
 *
-* Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
@@ -24,6 +24,7 @@
             Yes: "\u0646\u0639\u0645",
             No: "\u0644\u0627",
             Cancel: "\u0627\u0644\u063a\u0627\u0621",
+            Close: "\u0625\u063a\u0644\u0627\u0642",
             Clear: "\u062a\u0646\u0636\u064a\u0641",
             Done: "\u062a\u0645",
             Loading: "\u062c\u0627\u0631 \u0627\u0644\u062a\u062d\u0645\u064a\u0644 ...",

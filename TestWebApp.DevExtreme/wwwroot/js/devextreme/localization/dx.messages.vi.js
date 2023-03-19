@@ -1,9 +1,9 @@
 /*!
 * DevExtreme (dx.messages.vi.js)
-* Version: 22.1.5
-* Build date: Fri Sep 02 2022
+* Version: 22.1.8
+* Build date: Wed Feb 22 2023
 *
-* Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
@@ -24,6 +24,7 @@
             Yes: "C\xf3",
             No: "Kh\xf4ng",
             Cancel: "H\u1ee7y",
+            Close: "\u0110\xf3ng",
             Clear: "L\xe0m s\u1ea1ch",
             Done: "Ho\xe0n t\u1ea5t",
             Loading: "\u0110ang t\u1ea3i...",
