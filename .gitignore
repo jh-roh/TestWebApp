@@ -4,6 +4,7 @@ TestWebApp/bin/
 TestWebApp.Database/bin/
 TestWebApp.DotNetNote/bin/
 TestWebApp.DotNetSale/bin/
+TestWebApp.DXWebApplication/bin/
 TestWebApp.Identity/bin/
 TestWebApp.NoticBoard/bin/
 TestWebApp.Website/bin/
@@ -23,6 +24,7 @@ TestWebApp/obj/
 TestWebApp.Database/obj/
 TestWebApp.DotNetNote/obj/
 TestWebApp.DotNetSale/obj/
+TestWebApp.DXWebApplication/obj/
 TestWebApp.Identity/obj/
 TestWebApp.NoticBoard/obj/
 TestWebApp.Website/obj/
