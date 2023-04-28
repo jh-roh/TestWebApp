@@ -46,3 +46,6 @@
 2022-11-21 22:35:44.450 +09:00 [INF] Application started. Press Ctrl+C to shut down.
 2022-11-21 22:35:44.463 +09:00 [INF] Hosting environment: Development
 2022-11-21 22:35:44.472 +09:00 [INF] Content root path: C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetSale
+2023-04-25 16:40:19.521 +09:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-25 16:40:19.539 +09:00 [INF] Hosting environment: Development
+2023-04-25 16:40:19.541 +09:00 [INF] Content root path: C:\Users\jh.roh\source\repos\WebApplication6\TestWebApp.DotNetSale
