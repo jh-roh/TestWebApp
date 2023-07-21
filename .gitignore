@@ -11,6 +11,7 @@ TestWebApp.Website/bin/
 TestWebApp.DevExtreme/bin/
 TestWebApp.RazorEngineCore/bin/
 TestWebApp.WebApi/bin/
+TestWepApp.BlazorApp/bin/
 Note.BLL/bin/
 Note.DAL.MSSQL/bin/
 Note.IDAL/bin/
@@ -32,6 +33,7 @@ TestWebApp.Website/obj/
 TestWebApp.DevExtreme/obj/
 TestWebApp.RazorEngineCore/obj/
 TestWebApp.WebApi/obj/
+TestWepApp.BlazorApp/obj/
 Note.BLL/obj/
 Note.DAL.MSSQL/obj/
 Note.IDAL/obj/
