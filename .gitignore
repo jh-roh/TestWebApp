@@ -12,6 +12,7 @@ TestWebApp.DevExtreme/bin/
 TestWebApp.RazorEngineCore/bin/
 TestWebApp.WebApi/bin/
 TestWepApp.BlazorApp/bin/
+TestWepApp.BlazorApp.Database/bin/
 Note.BLL/bin/
 Note.DAL.MSSQL/bin/
 Note.IDAL/bin/
@@ -34,6 +35,7 @@ TestWebApp.DevExtreme/obj/
 TestWebApp.RazorEngineCore/obj/
 TestWebApp.WebApi/obj/
 TestWepApp.BlazorApp/obj/
+TestWepApp.BlazorApp.Database/obj/
 Note.BLL/obj/
 Note.DAL.MSSQL/obj/
 Note.IDAL/obj/
@@ -45,3 +47,5 @@ Note.Oracle.DAL/obj/
 .vs/
 /TestWebApp.Database/TestWebApp.Database.jfm
 /TestWebApp.Database/TestWebApp.Database.dbmdl
+/TestWepApp.BlazorApp.Database/TestWepApp.BlazorApp.Database.dbmdl
+/TestWepApp.BlazorApp.Database/TestWepApp.BlazorApp.Database.jfm

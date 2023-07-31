@@ -54,7 +54,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWebApp.DXWebApplication
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWebApp.WebApi", "TestWebApp.WebApi\TestWebApp.WebApi.csproj", "{CD56BE5D-BFC7-4559-B6C2-4B2E29A680CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWepApp.BlazorApp", "TestWepApp.BlazorApp\TestWepApp.BlazorApp.csproj", "{98964954-C8A2-4F2D-88D3-426077A99249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWepApp.BlazorApp", "TestWepApp.BlazorApp\TestWepApp.BlazorApp.csproj", "{98964954-C8A2-4F2D-88D3-426077A99249}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TestWepApp.BlazorApp.Database", "TestWepApp.BlazorApp.Database\TestWepApp.BlazorApp.Database.sqlproj", "{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -140,6 +142,12 @@ Global
 		{98964954-C8A2-4F2D-88D3-426077A99249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98964954-C8A2-4F2D-88D3-426077A99249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98964954-C8A2-4F2D-88D3-426077A99249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

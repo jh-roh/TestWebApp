@@ -16,6 +16,7 @@ namespace TestWepApp.BlazorApp.Data
         public DbSet<Noodle> Noodles { get; set; }
         public DbSet<Garnish> Garnishs { get; set; }
 
+
         /// <summary>
         /// 모델(테이블)이 생성될때 처음실행
         /// </summary>
@@ -23,6 +24,7 @@ namespace TestWepApp.BlazorApp.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
 
             builder.Entity<Broth>().HasData(
                 new Broth() { Id = 1, Name = "콩국물", IsVegan = true },
