@@ -58,6 +58,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWepApp.BlazorApp", "Tes
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TestWepApp.BlazorApp.Database", "TestWepApp.BlazorApp.Database\TestWepApp.BlazorApp.Database.sqlproj", "{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestWebApp_TestCode", "TestWebApp_TestCode", "{03FA953B-5EA2-4508-B8B1-37F202349A5A}"
+	ProjectSection(SolutionItems) = preProject
+		TestWebApp_TestCode\ASP.NET Core 5.0 Series 실습코드.zip = TestWebApp_TestCode\ASP.NET Core 5.0 Series 실습코드.zip
+		TestWebApp_TestCode\AspNetCoreMvc.zip = TestWebApp_TestCode\AspNetCoreMvc.zip
+		TestWebApp_TestCode\AspPart3.zip = TestWebApp_TestCode\AspPart3.zip
+		TestWebApp_TestCode\BlazorPart1Source.zip = TestWebApp_TestCode\BlazorPart1Source.zip
+		TestWebApp_TestCode\Blazor_VS2022.zip = TestWebApp_TestCode\Blazor_VS2022.zip
+		TestWebApp_TestCode\InMemoryDatabase_Final.zip = TestWebApp_TestCode\InMemoryDatabase_Final.zip
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
