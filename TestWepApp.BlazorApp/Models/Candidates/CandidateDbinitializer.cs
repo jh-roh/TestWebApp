@@ -12,7 +12,7 @@
 
                 var candidateDbContext = services.GetRequiredService<CandidateAppDbContext>();
 
-                if (candidateDbContext.Candidates.Any())
+                if (!candidateDbContext.Candidates.Any(p => p.FirstName == "꺽정"))
                 {
                     candidateDbContext.Candidates.Add(new Candidate { FirstName = "꺽정", LastName = "임", IsEnrollment = false });
                     candidateDbContext.SaveChanges();
