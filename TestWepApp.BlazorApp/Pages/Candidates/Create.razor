@@ -78,7 +78,7 @@
         Model = new();
     }
 
-
+    //유효성이 통과되었을때 처리기
     protected async Task FormSubmit()
     {
         if(Busy == true)
@@ -87,19 +87,16 @@
         }
 
         Busy = true;
+
         try
         {
             if (Model is not null)
             {
-                using (var ctx = _ContextFactory.CreateDbContext())
-                {
-                    ctx.Candidates.Add(Model);
-                    await ctx.SaveChangesAsync();
-
-                    await Task.Delay(5000);
-
-                    Model = new();
-                }
+                using var ctx = _ContextFactory.CreateDbContext();
+                ctx.Candidates.Add(Model);
+                await ctx.SaveChangesAsync();
+                //await Task.Delay(5000);
+                Model = new() { IsEnrollment = Model.IsEnrollment};
 
                 StatusMessage = "Success";
             }
