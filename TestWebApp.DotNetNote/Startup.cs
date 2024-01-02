@@ -16,6 +16,9 @@ using TestWebApp.DotNetNote.Common;
 using TestWebApp.DotNetNote.Data;
 using TestWebApp.DotNetNote.Models;
 using TestWebApp.DotNetNote.Models.User;
+using System.Resources;
+using Humanizer.Localisation;
+using TestWebApp.DotNetNote.Resources;
 
 namespace TestWebApp.DotNetNote
 {
@@ -44,6 +47,13 @@ namespace TestWebApp.DotNetNote
 
             services.AddRazorPages(); // Razor Page 사용 가능
             services.AddServerSideBlazor(); // Blazoe Server 사용 가능
+
+
+            //ResourceManager DI 컨테이너에 등록
+            services.AddSingleton<ResourceManager>(provider =>
+            {
+                return new ResourceManager(typeof(Resource));
+            });
 
             //DI 컨테이너에 등록
             services.AddTransient<ICategoryRepository, CategoryRepositoryInMemory>();
