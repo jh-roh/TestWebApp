@@ -1,6 +1,6 @@
 ﻿using Humanizer.Localisation;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Localization;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
