@@ -19,6 +19,12 @@ using TestWebApp.DotNetNote.Models.User;
 using System.Resources;
 using Humanizer.Localisation;
 using TestWebApp.DotNetNote.Resources;
+using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+using System.Reflection;
+using Microsoft.Extensions.Options;
 
 namespace TestWebApp.DotNetNote
 {
@@ -45,15 +51,55 @@ namespace TestWebApp.DotNetNote
 
             services.AddControllersWithViews(); //MVC + Web API 사용 가능
 
-            services.AddRazorPages(); // Razor Page 사용 가능
+
+            services.AddSingleton<ISharedViewLocalizer, SharedViewLocalizer>();
+            services.AddLocalization(options =>
+            {
+                options.ResourcesPath = "Resources";
+            });
+
+            services.AddRazorPages()
+                    .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
+                    .AddDataAnnotationsLocalization(options =>
+                    {
+                        options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        {
+                            var assemblyName = new AssemblyName(typeof(Resource).GetTypeInfo().Assembly.FullName);
+                            return factory.Create("SharedResource", assemblyName.Name);
+
+                        };
+                    });
+            // Razor Page 사용 가능
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new List<CultureInfo>
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("ko-KR"),
+
+                };
+
+                options.DefaultRequestCulture = new RequestCulture(culture: "ko-KR", uiCulture: "en-US");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
+
             services.AddServerSideBlazor(); // Blazoe Server 사용 가능
 
+            
+            ////ResourceManager DI 컨테이너에 등록
+            //services.AddSingleton<ResourceManager>(provider =>
+            //{
+            //    return new ResourceManager(typeof(Resource));
+            //});
 
-            //ResourceManager DI 컨테이너에 등록
-            services.AddSingleton<ResourceManager>(provider =>
-            {
-                return new ResourceManager(typeof(Resource));
-            });
+            //services.AddSingleton<IStringLocalizerFactory, SampleStringLocalizerFactory>();
+            //services.AddTransient<IStringLocalizer, SampleStringLocalizer>();
+            //services.AddSingleton<IHtmlLocalizerFactory, SampleHtmlLocalizerFactory>();
+            //services.AddTransient<IHtmlLocalizer, SampleHtmlLocalizer>();
+            //services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
             //DI 컨테이너에 등록
             services.AddTransient<ICategoryRepository, CategoryRepositoryInMemory>();
@@ -139,6 +185,21 @@ namespace TestWebApp.DotNetNote
             app.UseAuthorization();
 
             app.UseSession(); //세션 개체 사용, 반드시 UseEndpoints 이전에 호출되어야 함.
+
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
+            //var supportedCultures = new[]
+            //{
+            //    new CultureInfo("en-US"),
+            //    new CultureInfo("ko-KR"),
+            //};
+
+            //app.UseRequestLocalization(new RequestLocalizationOptions
+            //{
+            //    DefaultRequestCulture = new RequestCulture("en-US"),
+            //    SupportedCultures = supportedCultures,
+            //    SupportedUICultures = supportedCultures
+            //});
 
             app.UseEndpoints(endpoints =>
             {

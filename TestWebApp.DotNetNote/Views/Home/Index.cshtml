@@ -1,7 +1,49 @@
-﻿@using TestWebApp.DotNetNote.Components;
+﻿@using Microsoft.AspNetCore.Localization;
+@using TestWebApp.DotNetNote.Components;
+@using TestWebApp.DotNetNote.Resources;
+@inject ISharedViewLocalizer _localization;
+@*@inject Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer htmlLocalizer;*@
+@*@inject ISharedViewLocalizer SharedLocalizer*@
 @{
     ViewData["Title"] = "Home Page";
+
+    //ASP.NET Core에서 현재 요청의 문화 정보를 가져오는 코드입니다. 이 코드는 다국어화 및 지역화와 관련이 있음
+    //이 코드를 사용하면 사용자의 브라우저가 전송한 Accept-Language 헤더에서 추출된 문화 정보를 얻을 수 있습니다. 
+    //이 정보를 기반으로 애플리케이션은 사용자에게 적절한 언어로 콘텐츠를 제공
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
 }
+
+@*<h1>@htmlLocalizer["Resource_Test1"]</h1>*@
+<h1>@_localization["Resource_Test1"]</h1>
+<div>
+    @using (Html.BeginForm("SetLanguage", "Home", new { area = "" },
+    FormMethod.Post, true, new { id = "language" }))
+    {
+        <input type="hidden" name="returnUrl" value="/Home/Index" />
+        <select name="culture" onchange="$('#language').submit();">
+            @{
+                switch (requestCulture.RequestCulture.Culture.ToString())
+                {
+                    case "ko-KR":
+                        <option value="ko-KR" selected>한국어</option>
+                        <option value="en-US">ENGLISH</option>
+                        break;
+                    case "en-US":
+                        <option value="ko-KR">한국어</option>
+                        <option value="en-US" selected>ENGLISH</option>
+                        break;
+                    default:
+                        <option value="ko-KR" selected>한국어</option>
+                        <option value="en-US">ENGLISH</option>
+                        break;
+                }
+            }
+        </select>
+    }
+
+
+</div>
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
