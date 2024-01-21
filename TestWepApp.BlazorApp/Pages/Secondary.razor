@@ -1,0 +1,15 @@
+﻿@* @page "/second" *@
+@page "/second/{text:int}"
+
+
+@* http://localhost/second로 접속 *@
+
+<h3>Secondary</h3>
+<p>@Text</p>
+
+<p>두번째 페이지 입니다.</p>
+@code {
+    [Parameter]
+    public int Text { get; set; } = 1;
+    //파라미터를 붙인 값은 주소로 부터 값을 받을 수 있음
+}

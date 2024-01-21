@@ -1,9 +1,36 @@
-﻿@page "/"
+﻿@* 페이지 라우팅 *@
+
+@page "/"
+
+@* 해당 페이지를 불러 왔을 때, 브라우저 상단 탭에 있는 이름을 변경 가능 *@
 
 <PageTitle>Index</PageTitle>
+<InputFile OnChange="GetFiles"/>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<h1 id="Test_Sample">블레이저 테스트1, 테스트 코드 작성</h1>
+<p id="Test_Caption">블레이저 테스트2, 테스트 코드 작성</p>
+<div class="Red_Box">Red_Box</div>
+<div class="Red_Box">Red_Box</div>
+<div class="Red_Box">Red_Box</div>
+
+<Sharing></Sharing>
+<Component GetText="부모로부터 주입된 문자 데이터"></Component>
+
+@code{
+    private int Number { get; set; } = 1234;
+    private long BinNum { get; set; } = 1234567;
+    private string MyText { get; set; } = "블레이저의 C#";
+
+    void GetFiles(InputFileChangeEventArgs e)
+    {
+        Console.WriteLine(e.File.Name);
+
+    }
+}
+

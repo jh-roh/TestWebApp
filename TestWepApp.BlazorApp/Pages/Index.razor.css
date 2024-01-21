@@ -1,0 +1,17 @@
+﻿
+#Test_Sample {
+    font-size: 40px;
+    color: crimson;
+}
+
+#Test_Caption {
+    font-size: 24px;
+    color: coral;
+}
+
+.Red_Box {
+    width: 100px;
+    height: 100px;
+    background-color: beige;
+    border-radius: 5px;
+}
