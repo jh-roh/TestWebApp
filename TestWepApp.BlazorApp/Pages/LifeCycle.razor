@@ -1,11 +1,13 @@
 ﻿@* 페이지 라우팅 *@
 
-@page "/"
+@page "/life/{data}"
+
+
 
 @* 해당 페이지를 불러 왔을 때, 브라우저 상단 탭에 있는 이름을 변경 가능 *@
 
-<PageTitle>Index</PageTitle>
-<InputFile OnChange="GetFiles"/>
+<PageTitle>라이프 사이클</PageTitle>
+<InputFile OnChange="GetFiles" />
 
 <h1>Hello, world!</h1>
 
@@ -24,7 +26,9 @@ Welcome to your new app.
 
 <button @onclick="@(e => Add("아무것도 없는 빈텍스트"))">눌러보기</button>
 
-@code{
+<input type="text"  @bind="Setting" />
+
+@code {
     class TableName
     {
         public int Order { get; set; } = 0;
@@ -40,6 +44,11 @@ Welcome to your new app.
     private string[] StrArray = new string[10];
     // private List<string> Slist = new List<string>();
     private List<string> Slist = new();
+
+    [Parameter]
+    public string Data { get; set; } = String.Empty;
+
+    public string Setting { get; set; } = String.Empty;
 
     void GetFiles(InputFileChangeEventArgs e)
     {
@@ -61,28 +70,50 @@ Welcome to your new app.
 
     public override Task SetParametersAsync(ParameterView parameters)
     {
-        Console.WriteLine($"{0}", "SetParametersAsync");
+        // 결과를 보았을 떄 url 주소로 부터 데이터를 받기전에 이 함수가 실행되어 빈값 출력
+        Console.WriteLine(Data);
 
-    return base.SetParametersAsync(parameters);
+        Data = "셋 파라미터에서 추가";
+
+        Console.WriteLine($"1. {Data}       |     2. {Setting}");
+
+        return base.SetParametersAsync(parameters);
     }
 
     protected override void OnInitialized()
     {
-        Console.WriteLine($"{0}", "OnInitialized");
+        Data = "온 이니셜라이즈에서 변경";
+        Setting = "온 이니셜라이즈에서 추가";
 
+        Console.WriteLine($"1. {Data}       |     2. {Setting}");
 
         base.OnInitialized();
     }
 
     protected override void OnParametersSet()
     {
-        Console.WriteLine($"{0}", "OnParametersSet");
+        Setting = Data + "했다가 온 파라밑너에서 더하기";
+
+        Console.WriteLine($"1. {Data}       |     2. {Setting}");
+
         base.OnParametersSet();
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        Console.WriteLine($"{0}", "OnAfterRender");
+        if(firstRender)
+        {
+            Data = "애프터 렌더에서 초기화";
+            Setting = "애프터 렌더에서 초기화";
+        }
+        else
+        {
+            Data = "페이지의 데이터가 변경되었을 경우 호출";
+        }
+
+        
+        Console.WriteLine($"1. {Data}       |     2. {Setting}");
+
 
         base.OnAfterRender(firstRender);
     }
