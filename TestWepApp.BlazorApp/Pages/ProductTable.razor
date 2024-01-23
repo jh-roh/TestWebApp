@@ -1,7 +1,46 @@
 ﻿@page "/product"
+@using TestWepApp.BlazorApp.Data;
+@inject ConfigTable CTs
+@inject TableCell TC
 
 <h3>ProductTable</h3>
 
-@code {
 
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">번호</th>
+                <th scope="col">이름</th>
+                <th scope="col">제품형태</th>
+                <th scope="col">제품카테고리</th>
+                <th scope="col">가격</th>
+                <th scope="col">구입일자</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var index in indexTable)
+            {
+                <tr>
+                    <th scope="row">@index.Id</th>
+                    <td>@index.Name</td>
+                    <td>@index.Product</td>
+                    <td>@index.Category</td>
+                    <td>@index.Price</td>
+                    <td>@index.WhenBuy</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+@code {
+    private List<ConfigTable> indexTable = new List<ConfigTable>();
+
+    protected override void OnInitialized()
+    {
+        indexTable = TC.Configure();
+
+        base.OnInitialized();
+    }
 }
