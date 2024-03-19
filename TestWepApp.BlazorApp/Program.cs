@@ -34,6 +34,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
 
+builder.Services.AddScoped<ConfigTable>();
+builder.Services.AddScoped<TableCell>();
+
+
 var app = builder.Build();
 
 
