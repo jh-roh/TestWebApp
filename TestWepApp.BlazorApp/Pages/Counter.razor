@@ -6,10 +6,19 @@
 
 <p role="status">Current count: <span class="@BackgroundColor">@currentCount</span> </p>
 
+<p>
+    <input type="number" @bind="@increment" @bind:event="oninput" />
+</p>
+
+<input type="number" value="@increment" @onchange="@((ChangeEventArgs e) => increment = int.Parse($"{e.Value}"))" />    
+
+@* <button class="btn btn-primary" @onclick="(() => {currentCount++;})" disabled="@(currentCount > 10)">Click me</button> *@
 <button class="btn btn-primary" @onclick="IncrementCount" disabled="@(currentCount > 10)">Click me</button>
 
 @code {
     private int currentCount = 0;
+
+    private int increment = 1;
 
     private string BackgroundColor => (currentCount % 2 == 0) ? "red-background" : "yellow-background";
 
@@ -17,11 +26,11 @@
     {
         if(e.CtrlKey)
         {
-            currentCount--;       
+            currentCount -= increment; 
         }
         else
         {
-            currentCount++; 
+            currentCount += increment;
         }
     }
 }
