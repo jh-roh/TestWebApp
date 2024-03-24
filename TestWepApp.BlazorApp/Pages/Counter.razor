@@ -9,11 +9,29 @@
 <p>
     <input type="number" @bind="@increment" @bind:event="oninput" />
 </p>
-
-<input type="number" value="@increment" @onchange="@((ChangeEventArgs e) => increment = int.Parse($"{e.Value}"))" />    
-
 @* <button class="btn btn-primary" @onclick="(() => {currentCount++;})" disabled="@(currentCount > 10)">Click me</button> *@
-<button class="btn btn-primary" @onclick="IncrementCount" disabled="@(currentCount > 10)">Click me</button>
+@* <input type="number" value="@increment" @onchange="@((ChangeEventArgs e) => increment = int.Parse($"{e.Value}"))" />     *@
+
+<p>
+    <input type="number" @bind="@increment" @onkeypress="KeyHandler" @onkeypress:preventDefault="@shouldPreventDefault" />
+    @* <input type="number" @bind="@increment" @onkeypress="KeyHandler" @onkeypress:preventDefault /> *@
+
+</p>
+
+<div style="width:400px; height:400px; background-color:yellow;" @onmousemove="OuterMouseMove">
+    @outerPos
+    <div style="width:300px; height:300px; background:green; margin:50px;" @onmousemove="InnerMouseMove" @onmousemove:stopPropagation>
+        @innerPos
+    </div>
+
+</div>
+@* <button class="btn btn-primary" @onclick="IncrementCount" disabled="@(currentCount > 10)">Click me</button> *@
+
+<p>
+    <input @bind="@Today" @bind:format="yyyy-MM-dd" />
+</p>
+
+<button class="btn btn-secondary" @onclick="AutoIncrement">Auto Increment</button>
 
 @code {
     private int currentCount = 0;
@@ -22,15 +40,53 @@
 
     private string BackgroundColor => (currentCount % 2 == 0) ? "red-background" : "yellow-background";
 
-    private void IncrementCount(MouseEventArgs e)
+    // add this next to the KeyHandler method
+    private bool shouldPreventDefault = true;
+
+    private string outerPos = "Nothing Yet";
+    private string innerPos = "Nothing Yet";
+
+    private DateTime Today { get; set; } = DateTime.Now;
+
+    private void IncrementCount()
     {
-        if(e.CtrlKey)
+        currentCount += 1;
+        Console.WriteLine("++");
+    }
+
+    // private void IncrementCount(MouseEventArgs e)
+    // {
+    //     if(e.CtrlKey)
+    //     {
+    //         currentCount -= increment; 
+    //     }
+    //     else
+    //     {
+    //         currentCount += increment;
+    //     }
+    // }
+    private void KeyHandler(KeyboardEventArgs e)
+    {
+        if(e.Key == "+")
         {
-            currentCount -= increment; 
+            increment--;
         }
-        else
+        else if(e.Key == "-")
         {
-            currentCount += increment;
+            increment++;
         }
     }
+    private void OuterMouseMove(MouseEventArgs e) => outerPos = $"Mouse at {e.ClientX}x{e.ClientY}";
+    private void InnerMouseMove(MouseEventArgs e) => innerPos = $"Mouse at {e.ClientX}x{e.ClientY}";
+
+    private void AutoIncrement(MouseEventArgs e)
+    {
+        var timer = new System.Threading.Timer(
+            callback:(_) => { IncrementCount();
+                InvokeAsync(() => StateHasChanged()); },
+            state: null,
+            dueTime: TimeSpan.FromSeconds(1),
+            period: TimeSpan.FromSeconds(1)
+        );
+    }   
 }
