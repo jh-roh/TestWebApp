@@ -2,6 +2,7 @@
 
 @page "/"
 
+
 @* 해당 페이지를 불러 왔을 때, 브라우저 상단 탭에 있는 이름을 변경 가능 *@
 
 <PageTitle>Index</PageTitle>
@@ -24,6 +25,31 @@ Welcome to your new app.
 
 <button @onclick="@(e => Add("아무것도 없는 빈텍스트"))">눌러보기</button>
 
+<h1>Our selection of pizzas</h1>
+
+@foreach (var pizza in State.Menu.Pizzas) 
+{
+    <div class="row">
+        <div class="col">
+            @pizza.Name
+        </div>
+        <div class="col text-right">
+            @($"{pizza.Price:0.00}")
+        </div>
+        <div class="col"></div>
+        <div class="col">
+            <img alt="@pizza.Spiciness" />
+        </div>
+        <div class="col">
+            <button class="btn btn-success pl-4 pr-4" @onclick="@(() => AddToBasket(pizza))">
+                Add
+            </button>
+        </div>
+    </div>
+}
+
+
+
 @code{
     class TableName
     {
@@ -40,6 +66,15 @@ Welcome to your new app.
     private string[] StrArray = new string[10];
     // private List<string> Slist = new List<string>();
     private List<string> Slist = new();
+
+
+    private State State { get; } = new State();
+
+
+    private void AddToBasket(Pizza pizza)
+    {
+        
+    }
 
     void GetFiles(InputFileChangeEventArgs e)
     {
@@ -63,12 +98,18 @@ Welcome to your new app.
     {
         Console.WriteLine($"{0}", "SetParametersAsync");
 
-    return base.SetParametersAsync(parameters);
+        return base.SetParametersAsync(parameters);
     }
 
     protected override void OnInitialized()
     {
         Console.WriteLine($"{0}", "OnInitialized");
+
+        State.Menu.Add(new Pizza(1, "Pepperoni", 8.99M, Spiciness.Spicy));
+        State.Menu.Add(new Pizza(2, "Margarita", 7.99M, Spiciness.None));
+        State.Menu.Add(new Pizza(3, "Diabolo", 9.99M, Spiciness.Hot));
+        
+
 
 
         base.OnInitialized();
