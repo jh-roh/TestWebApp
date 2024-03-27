@@ -49,6 +49,41 @@ Welcome to your new app.
 }
 
 
+@if (State.Basket.Orders.Any())
+{
+    <h1 class="">Your current order</h1>
+
+    @foreach(var (pizza, pos) in State.Basket.Orders.Select((id, pos) => (State.Menu.GetPizza(id), pos)))
+    {
+        <div class="row mb-2">
+            <div class="col">
+                @pizza.Name
+            </div>
+            <div class="col text-right">
+                @($"{pizza.Price:0.00}")
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-danger"
+                        @onclick="@(() => RemoveFromBasket(pos))">
+                    Remove
+                </button>
+            </div>
+        </div>
+
+    }
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"><hr /></div>
+        <div class="col"> </div>
+        <div class="col"> </div>
+    </div>
+
+}
+
+
+
 
 @code{
     class TableName
@@ -71,10 +106,9 @@ Welcome to your new app.
     private State State { get; } = new State();
 
 
-    private void AddToBasket(Pizza pizza)
-    {
-        
-    }
+    private void AddToBasket(Pizza pizza) => State.Basket.Add(pizza.Id);
+
+    private void RemoveFromBasket(int pos) => State.Basket.RemoveAt(pos);
 
     void GetFiles(InputFileChangeEventArgs e)
     {
