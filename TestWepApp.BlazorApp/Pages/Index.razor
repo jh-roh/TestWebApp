@@ -80,10 +80,30 @@ Welcome to your new app.
         <div class="col"> </div>
     </div>
 
+
 }
 
+<h1>Please enter your details below</h1>
+
+<fieldset>
+    <div class="row mb-2">
+        <label class="col-2" for="name">Name:</label>
+        <input class="col-6" id="name" @bind="State.Basket.Customer.Name" />
+    </div>
+    <div class="row mb-2">
+        <label class="col-2" for="street">Street:</label>
+        <input class="col-6" id="street" @bind="State.Basket.Customer.Street" />
+    </div>
+    <div class="row mb-2">
+        <label class="col-2" for="city">City:</label>
+        <input class="col-6" id="city" @bind="State.Basket.Customer.City" />
+    </div>
+
+    <button @onclick="PlaceOrder">Checkout</button>
+</fieldset>
 
 
+@State.ToJson();
 
 @code{
     class TableName
@@ -109,6 +129,12 @@ Welcome to your new app.
     private void AddToBasket(Pizza pizza) => State.Basket.Add(pizza.Id);
 
     private void RemoveFromBasket(int pos) => State.Basket.RemoveAt(pos);
+
+    private void PlaceOrder()
+    {
+        Console.WriteLine("Placing order");
+    }
+
 
     void GetFiles(InputFileChangeEventArgs e)
     {
