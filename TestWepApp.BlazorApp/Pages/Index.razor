@@ -103,7 +103,67 @@ Welcome to your new app.
 </fieldset>
 
 
+
 @State.ToJson();
+
+
+
+@* Customer entry *@
+
+<h1 class="mt-2 mb-2">Please enter your details below</h1>
+
+<EditForm Model="@State.Basket.Customer" OnValidSubmit="PlaceOrder" >
+    <DataAnnotationsValidator />
+    <fieldset>
+        <div class="row mb-2">
+            <label class="col-2" for="name">Name:</label>
+            <InputText class="form-control col-6" @bind-Value="@State.Basket.Customer.Name" />
+        </div>
+        <div class="row mb-2">
+            <div class="col-6 offset-2">
+                <ValidationMessage For="@(() => State.Basket.Customer.Name)" />
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label class="col-2" for="street">Street:</label>
+            <InputText class="form-control col-6" @bind-Value="@State.Basket.Customer.Street" />
+        </div>
+        <div class="row mb-2">
+            <div class="col-6 offset-2">
+                <ValidationMessage For="@(() => State.Basket.Customer.Street)" />
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label class="col-2" for="city">City:</label>
+            <InputText class="form-control col-6" @bind-Value="@State.Basket.Customer.City" />
+        </div>
+        <div class="row mb-2">
+            <button class="mx-auto w-25 btn btn-success" @onclick=PlaceOrder>Checkout 
+            </button>
+        </div>
+
+
+        <input class="form-control col-6 valid" />
+        <input class="form-control col-6 modified valid" />
+
+        <div class="row mb-2">
+            <div class="col-6 offset-2">
+                <ValidationMessage For="@(() => State.Basket.Customer.City)" />
+            </div>
+        </div>
+        <ValidationSummary />
+    </fieldset>
+
+</EditForm>
+
+<Alert Show="@ShowAlert">
+    <span class="oi oi-check mr-2" aria-hidden="true"></span>
+    <strong>Blazor is so cool!</strong>
+</Alert>
+
+<button @onclick="ToggleAlert" class="btn btn-success">Toggle</button>
+
+
 
 @code{
     class TableName
@@ -129,6 +189,10 @@ Welcome to your new app.
     private void AddToBasket(Pizza pizza) => State.Basket.Add(pizza.Id);
 
     private void RemoveFromBasket(int pos) => State.Basket.RemoveAt(pos);
+
+    public bool ShowAlert { get; set; } = true;
+
+    public void ToggleAlert() => ShowAlert = !ShowAlert;
 
     private void PlaceOrder()
     {
