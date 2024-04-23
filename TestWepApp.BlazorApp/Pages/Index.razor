@@ -1,5 +1,5 @@
 ﻿@* 페이지 라우팅 *@
-
+ 
 @page "/"
 
 
@@ -161,6 +161,15 @@ Welcome to your new app.
     <strong>Blazor is so cool!</strong>
 </Alert>
 
+ 
+<Dismissible Show="@ShowAlert">
+    <span class="oi oi-check mr-2" aria-hidden="true"></span>
+    <strong>Blazor is so cool!</strong>
+</Dismissible>
+
+
+
+ 
 <button @onclick="ToggleAlert" class="btn btn-success">Toggle</button>
 
 
