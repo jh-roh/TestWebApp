@@ -155,19 +155,19 @@ Welcome to your new app.
     </fieldset>
 
 </EditForm>
-
+@* 
 <Alert Show="@ShowAlert">
     <span class="oi oi-check mr-2" aria-hidden="true"></span>
     <strong>Blazor is so cool!</strong>
-</Alert>
+</Alert> *@
 
  
 @* <Dismissible Show="@ShowAlert">
     <span class="oi oi-check mr-2" aria-hidden="true"></span>
     <strong>Blazor is so cool!</strong>
-</Dismissible> *@
-
-<Dismissible @bind-Show="@ShowAlert" >
+</Dismissible>
+ *@
+<Dismissible @bind-Show="@ShowAlert" @ref="alert" >
     <span class="oi oi-check mr-2" aria-hidden="true"></span>
     <strong>Blazor is so cool!</strong>
 </Dismissible>
@@ -203,14 +203,30 @@ Welcome to your new app.
 
     private void RemoveFromBasket(int pos) => State.Basket.RemoveAt(pos);
 
-    public bool ShowAlert { get; set; } = true;
 
+    // private bool showAlert = true;
+
+    // public bool ShowAlert 
+    // { 
+    //     get => showAlert; 
+    //     set
+    //     {
+    //         if(value != ShowAlert)
+    //         {
+    //             showAlert = value;
+    //             StateHasChanged();
+    //         }
+    //     }
+    // } 
     // public void ToggleAlert() => ShowAlert = !ShowAlert;
+
+    private Dismissible alert = default!;
+    public bool ShowAlert { get; set; } = true;
 
     public void ToggleAlert()
     {
         ShowAlert = !ShowAlert;
-        StateHasChanged();
+        // StateHasChanged();
     }
 
     private void PlaceOrder()

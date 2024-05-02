@@ -8,12 +8,12 @@ namespace TestWepApp.BlazorApp.Components
         public double TimeInSeconds { get; set; }
 
         [Parameter]
-        public Action Tick { get; set; } = default!;
+        public EventCallback Tick { get; set; } = default!;
 
         protected override void OnInitialized()
         {
             var timer = new System.Threading.Timer(
-                callback: (_) => InvokeAsync(() => Tick?.Invoke()),
+                callback: (_) => InvokeAsync(() => Tick.InvokeAsync()),
                 state: null,
                 dueTime: TimeSpan.FromSeconds(TimeInSeconds),
                 period: Timeout.InfiniteTimeSpan);
