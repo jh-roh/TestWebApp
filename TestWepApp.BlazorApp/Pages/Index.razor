@@ -176,7 +176,15 @@ Welcome to your new app.
  
 <button @onclick="ToggleAlert" class="btn btn-success">Toggle</button>
 
-<Timer TimeInSeconds="5" Tick="ToggleAlert"></Timer>
+@* <Timer TimeInSeconds="5" Tick="ToggleAlert"></Timer> *@
+<Timer TimeInSeconds="5" Tick="@(() => alert.Dismiss())"></Timer>
+
+<GrandMother>
+    <GrandChild/>
+    <Dismissible Show="true">
+        <GrandChild />
+    </Dismissible>
+</GrandMother>
 
 @code{
     class TableName

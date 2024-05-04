@@ -1,0 +1,14 @@
+﻿@page "/lifecycle"
+<h3>LifeCycleTest</h3>
+
+<LifeCycleComponent Counter="@counter"></LifeCycleComponent>
+
+<button class="btn btn-primary" @onclick="Increment">Increment</button>
+
+@code {
+    private int counter = 1;
+    private void Increment(MouseEventArgs e)
+    {
+        counter += 1;
+    }
+}
