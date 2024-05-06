@@ -1,0 +1,28 @@
+﻿@page "/pizzaplace"
+
+<h3>PizzaPlace</h3>
+
+<PizzaList Title="Out Selection of Pizzas"
+           Items="@State.Menu.Pizzas"
+           ButtonTitle="Order"
+           ButtonClass="btn btn-success pl-4 pr-4" Selected="@AddToBasket"></PizzaList>
+
+@code {
+    private State State { get; } = new State();
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine($"{0}", "OnInitialized");
+
+        State.Menu.Add(new Pizza(1, "Pepperoni", 8.99M, Spiciness.Spicy));
+        State.Menu.Add(new Pizza(2, "Margarita", 7.99M, Spiciness.None));
+        State.Menu.Add(new Pizza(3, "Diabolo", 9.99M, Spiciness.Hot));
+
+
+
+
+        base.OnInitialized();
+    }
+    private void AddToBasket(Pizza pizza) => State.Basket.Add(pizza.Id);
+
+}

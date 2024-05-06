@@ -17,26 +17,65 @@
         }
     }
 
+    private bool firstParameterSet = true;
+    DateTime created;
+
+    DateTime lastUpdate;
+    private bool shouldRender;
+
+    /// <summary>
+    /// ParameterView 인수에 값을 가진 [Parameter], [CascadingParameter] 를 설정
+    /// base.SetParametersAsync를 호출하지 않으면 UI 가 업데이트 되지 않으므로
+    /// 구성요소가 업데이트 되기를 원한다면 StateHasChanged를 호출해야함.
+    /// </summary>
+    /// <param name="parameters"></param>
+    /// <returns></returns>
     public override Task SetParametersAsync(ParameterView parameters)
     {
-        Console.WriteLine("SetParametersAsync called");
-        return base.SetParametersAsync(parameters);
-    }
 
-    protected override void OnParametersSet()
-    {
-        Console.WriteLine("OnParametersSet called");
+        Console.WriteLine("SetParametersAsync called");
+        if(parameters.TryGetValue(nameof(Counter), out int counter))
+        {
+            //ignore odd values
+            if(counter % 2 == 0)
+            {
+                return base.SetParametersAsync(parameters);
+            }
+
+            if(firstParameterSet)
+            {
+                firstParameterSet = false;
+                StateHasChanged(); // Force render
+            }
+        }
+        return Task.CompletedTask;
     }
 
     protected override void OnInitialized()
     {
+        created = DateTime.Now;
         Console.WriteLine("OnInitialized called");
 
     }
+    /// <summary>
+    /// 파라미터 변경 후 데이터 조회에 하나 이상의 파라미터가 필요한 경우
+    /// 데이터 바인딩이 하나 이상의 파라미터를 업데이트 할때마다 이러한 메서드가 다시 호출되므로
+    /// 계산된 속성, 필터링 등에 이상적
+    /// </summary>
+    protected override void OnParametersSet()
+    {
+        lastUpdate = DateTime.Now;
+        Console.WriteLine("OnParametersSet called");
+    }
 
-    protected override void OnAfterRender(bool firstRender) => Console.WriteLine($"OnAfterRender called with firstRender = {firstRender}");
 
+    protected override void OnAfterRender(bool firstRender) 
+    => Console.WriteLine($"OnAfterRender called with firstRender = {firstRender}");
 
+    /// <summary>
+    /// 구성 요소를 다시 렌더링 해야 하는 지 여부를 나타내는 부울 값을 반환
+    /// </summary>
+    /// <returns></returns>
     protected override bool ShouldRender()
     {
         Console.WriteLine($"ShouldRender called");
