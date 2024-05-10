@@ -1,0 +1,61 @@
+﻿@if(Orders is not null && Orders.Any())
+{
+    <h1 class="">Your current orders</h1>    
+
+    @foreach(var (pizza, pos) in Pizzas)
+    {
+        <div class="row mb-2">
+            <div class="col">
+                @pizza.Name
+            </div>
+        </div>
+        <div class="col text-right">
+            @($"{pizza.Price:0.00}")
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col">
+            <button class="btn btn-danger" @onclick="@(() => Selected.InvokeAsync(pos))">
+                Remove
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"><hr /></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row">
+        <div class="col">Total:</div>
+        <div class="col text-right font-weight-bold">@($"{TotalPrice:0.00}")</div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+
+    </div>
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<int> Orders { get; set; } = default!;
+
+    [Parameter]
+    public EventCallback<int> Selected { get; set; } = default!;
+
+    [Parameter]
+    public Func<int, Pizza> GetPizzaFromId { get; set; } = default!;
+
+    private IEnumerable<(Pizza pizza, int pos)> Pizzas { get; set; } = default!;
+
+    private decimal TotalPrice { get; set; } = default!;
+
+    protected override void OnParametersSet()
+    {
+        Pizzas = Orders.Select((id, pos) => (pizza: GetPizzaFromId(id), pos: pos));
+
+        TotalPrice = Pizzas.Select(tuple => tuple.pizza.Price).Sum();
+    }
+}

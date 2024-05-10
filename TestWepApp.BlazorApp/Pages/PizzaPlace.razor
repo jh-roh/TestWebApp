@@ -7,6 +7,8 @@
            ButtonTitle="Order"
            ButtonClass="btn btn-success pl-4 pr-4" Selected="@AddToBasket"></PizzaList>
 
+<ShoppingBasket Orders="@State.Basket.Orders" GetPizzaFromId="@State.Menu.GetPizza" Selected="@RemoveFromBasket"></ShoppingBasket>
+
 @code {
     private State State { get; } = new State();
 
@@ -24,5 +26,7 @@
         base.OnInitialized();
     }
     private void AddToBasket(Pizza pizza) => State.Basket.Add(pizza.Id);
+
+    private void RemoveFromBasket(int id) => State.Basket.RemoveAt(id);
 
 }
