@@ -51,6 +51,10 @@
         return Task.CompletedTask;
     }
 
+    /// <summary>
+    /// The OnInitialized and OnInitializedAsync methods are the perfect place to load data from the database 
+    /// and assign it to properties used in the component’s template.
+    /// </summary>
     protected override void OnInitialized()
     {
         created = DateTime.Now;
