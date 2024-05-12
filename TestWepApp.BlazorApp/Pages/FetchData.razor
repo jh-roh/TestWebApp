@@ -1,4 +1,5 @@
 ﻿@page "/fetchdata"
+@using TestWepApp.BlazorApp.Components.Advanced
 @using TestWepApp.BlazorApp.Data
 @inject WeatherForecastService ForecastService
 
@@ -35,10 +36,39 @@ else
             }
         </tbody>
     </table>
+
+
+    <h1>Grid Template Test</h1>
+    <Grid Items="forecasts" TItem="WeatherForecast">
+        <Header>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </Header>
+        <Row>
+            <td>@context.Date</td>
+            <td>@context.TemperatureC</td>
+            <td>@context.TemperatureF</td>
+            <td>@context.Summary</td>
+        </Row>
+        <Footer>
+            <td colspan="4">Spring is in the air!</td>
+        </Footer>
+    </Grid>
+
+
+    <LIstView Items="forecasts">
+        <ItemTemplate>
+            @forcastTemplate(context)
+        </ItemTemplate>
+    </LIstView>
 }
 
 @code {
     private WeatherForecast[]? forecasts;
+
+    private RenderFragment<WeatherForecast> forcastTemplate = (forcast) =>@<span>@forcast.Summary</span>;
 
     protected override async Task OnInitializedAsync()
     {

@@ -24,6 +24,8 @@
     private bool shouldRender;
 
     /// <summary>
+    /// 매개 변수 값이 설정되기전에 일부 코드를 실행해야 하는 경우
+    ///
     /// ParameterView 인수에 값을 가진 [Parameter], [CascadingParameter] 를 설정
     /// base.SetParametersAsync를 호출하지 않으면 UI 가 업데이트 되지 않으므로
     /// 구성요소가 업데이트 되기를 원한다면 StateHasChanged를 호출해야함.
@@ -52,12 +54,17 @@
     }
 
     /// <summary>
-    /// The OnInitialized and OnInitializedAsync methods are the perfect place to load data from the database 
+    /// The OnInitialized and OnInitializedAsync methods are the perfect place to load data from the database
     /// and assign it to properties used in the component’s template.
+    /// 구성 요소는 상위 요소로부터 매개변수를 받은 후 초기화됩니다.이 시점에서 OnInitialized 및 OnInitializedAsync 메서드가 호출됩니다.
+    /// 구성 요소가 생성된 후 추가 초기화를 수행하려면 이러한 메서드 중 하나를 재정의하세요. 
+    /// 예를 들어, 이는 일반적으로 구성 요소에 대한 데이터를 얻기 위해 웹 API 서비스를 호출하는 지점입니다
     /// </summary>
     protected override void OnInitialized()
     {
         created = DateTime.Now;
+        // forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        // hero = await heroService.GetHero(Id);
         Console.WriteLine("OnInitialized called");
 
     }
@@ -72,18 +79,38 @@
         Console.WriteLine("OnParametersSet called");
     }
 
-
+    /// <summary>
+    /// OnAfterRender 및 OnAfterRenderAsync 메서드는 구성 요소가 처음으로 렌디링 된 후
+    /// 상태 변경의 결과로 다시 렌더링 되고 그에 따라 브라우저의 DOM이 업데이트 된 후에 호출
+    /// 이 후크는 DOM 요소에 의존하는 JavaScript 리소스의 초기화를 수행하는데 이상적
+    /// </summary>
+    /// <param name="firstRender"></param>
     protected override void OnAfterRender(bool firstRender) 
     => Console.WriteLine($"OnAfterRender called with firstRender = {firstRender}");
 
+    // @inject IJSRuntime JS
+    // JSObjectReference module;
+    // protected override void OnAfterRender(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         module = await JS.InvokeAsync<JSObjectReference>("import", "./js/exampleJsInterop.js");
+    //     }
+    // }
+
+
     /// <summary>
     /// 구성 요소를 다시 렌더링 해야 하는 지 여부를 나타내는 부울 값을 반환
+    /// 구성 요소는 여전히 한번 이상 렌더링
+    /// 이 방법을 사용하여 UI 새로고침을 억제 할 수 있음
     /// </summary>
     /// <returns></returns>
     protected override bool ShouldRender()
     {
         Console.WriteLine($"ShouldRender called");
-        return true;
+
+        shouldRender = true;
+        return shouldRender;
     }
 
     public void Dispose() => Console.WriteLine("Disposed");

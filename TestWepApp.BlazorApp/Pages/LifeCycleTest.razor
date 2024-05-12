@@ -5,7 +5,19 @@
 
 <button class="btn btn-primary" @onclick="Increment">Increment</button>
 
+@* Parent Component에서 매개 변수를 변경 시 OnParameterSet 이벤트 Call *@
+<CounterComponent count="@theCount"></CounterComponent>
+
+<button @onclick="IncrementCount">Click</button>
+
+
 @code {
+    int theCount { get; set; } = 1;
+    void IncrementCount()
+    {
+        theCount++;
+    }
+
     private int counter = 1;
     private void Increment(MouseEventArgs e)
     {
