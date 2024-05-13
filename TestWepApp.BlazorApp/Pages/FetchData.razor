@@ -63,6 +63,17 @@ else
             @forcastTemplate(context)
         </ItemTemplate>
     </LIstView>
+
+    <ListView2 Items="forecasts">
+        <ListTemplate Context="innerTemplate">
+            <ol>
+                @innerTemplate
+            </ol>
+        </ListTemplate>
+        <ItemTemplate Context="forecast">
+            <li>@forecast.Summary</li>
+        </ItemTemplate>
+    </ListView2>
 }
 
 @code {
