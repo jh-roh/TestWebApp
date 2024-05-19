@@ -1,0 +1,54 @@
+﻿@using System.Diagnostics
+@using TestWepApp.Components.Library.Data
+
+@if(measurements is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Guid</th>
+                <th>Min</th>
+                <th>Avg</th>
+                <th>Max</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var measurement in measurements)
+            {
+                <tr>
+                    <td>@measurement.Guid.ToString()</td>
+                    <td>@measurement.Min</td>
+                    <td>@measurement.Avg</td>
+                    <td>@measurement.Max</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Measurement>? measurements;
+    private Stopwatch timer = new Stopwatch();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        MeasurementsService measurementsService = new MeasurementsService();
+
+        measurements = await measurementsService.GetMeasurements();
+        timer.Start();
+    }
+
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        timer.Stop();
+
+        var elapsedMilliseconds = timer.ElapsedMilliseconds;
+        Console.WriteLine($"Full rendering took {elapsedMilliseconds} ms.");
+    }
+}

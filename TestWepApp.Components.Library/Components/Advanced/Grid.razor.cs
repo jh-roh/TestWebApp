@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace TestWepApp.BlazorApp.Components.Advanced
+namespace TestWepApp.Components.Library.Components.Advanced
 {
     public partial class Grid<TItem>
     {

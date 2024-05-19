@@ -24,4 +24,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TestWepApp.Components.Library\TestWepApp.Components.Library.csproj" />
+  </ItemGroup>
+
 </Project>

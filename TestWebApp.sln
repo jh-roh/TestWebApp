@@ -68,6 +68,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestWebApp_TestCode", "Test
 		TestWebApp_TestCode\InMemoryDatabase_Final.zip = TestWebApp_TestCode\InMemoryDatabase_Final.zip
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWepApp.Components.Library", "TestWepApp.Components.Library\TestWepApp.Components.Library.csproj", "{4536FED3-7DA4-47F8-9506-DB100F46B6CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +160,10 @@ Global
 		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{669CDCD0-6164-4094-AB6A-4B3E77C9B6B2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4536FED3-7DA4-47F8-9506-DB100F46B6CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4536FED3-7DA4-47F8-9506-DB100F46B6CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4536FED3-7DA4-47F8-9506-DB100F46B6CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4536FED3-7DA4-47F8-9506-DB100F46B6CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

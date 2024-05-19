@@ -13,6 +13,7 @@ TestWebApp.RazorEngineCore/bin/
 TestWebApp.WebApi/bin/
 TestWepApp.BlazorApp/bin/
 TestWepApp.BlazorApp.Database/bin/
+TestWepApp.Components.Library/bin/
 Note.BLL/bin/
 Note.DAL.MSSQL/bin/
 Note.IDAL/bin/
@@ -36,6 +37,7 @@ TestWebApp.RazorEngineCore/obj/
 TestWebApp.WebApi/obj/
 TestWepApp.BlazorApp/obj/
 TestWepApp.BlazorApp.Database/obj/
+TestWepApp.Components.Library/obj/
 Note.BLL/obj/
 Note.DAL.MSSQL/obj/
 Note.IDAL/obj/

@@ -1,4 +1,4 @@
-namespace TestWepApp.BlazorApp.Data
+namespace TestWepApp.Components.Library.Data
 {
     public class WeatherForecast
     {
