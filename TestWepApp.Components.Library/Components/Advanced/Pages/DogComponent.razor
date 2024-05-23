@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using TestWepApp.Components.Library.Components.Advanced.Pages
+@inherits AnimalComponent
+
+<EditForm Model="@Instance" OnValidSubmit="@ValidSubmit">
+    <DataAnnotationsValidator />
+
+    <fieldset>
+        <div class="row mb-2">
+            <label class="col-2" for="name">Name:</label>
+            <InputText class="form-control col-6" @bind-Value="@Instance.Name"></InputText>
+        </div>
+        <div class="row mb-2">
+            <div class="col-6 offset-2">
+                <ValidationMessage For="@(() => Instance.Name)"></ValidationMessage>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label class="col-2" for="isagooddog">Is a good dog</label>
+            <div class="col-1 pl-o w-auto">
+                <InputCheckbox class="form-control col-6" @bind-Value="@Instance.IsAGoodDog"></InputCheckbox>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-2">
+                <button class="btn btn-sucess">Save</button>
+            </div>
+        </div>
+    </fieldset>
+</EditForm>
