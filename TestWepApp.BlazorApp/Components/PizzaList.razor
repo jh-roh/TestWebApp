@@ -1,4 +1,4 @@
-﻿@if((Items is null) || !Items.Any())
+﻿@* @if((Items is null) || !Items.Any())
 {
     <div>Loadding...</div>
 }
@@ -11,4 +11,14 @@ else
         <PizzaItem Pizza="@pizza" ButtonClass="@ButtonClass" ButtonTitle="@ButtonTitle"
             Selected="@Selected"></PizzaItem>
     }
-}
+} *@
+
+<ItemList Items="@Items">
+    <Header>
+        <h1>@Title</h1>
+    </Header>
+    <RowTemplate Context="pizza"  >
+        <PizzaItem Pizza="@pizza" ButtonClass="@ButtonClass" ButtonTitle="@ButtonTitle"
+                   Selected="@Selected"></PizzaItem>
+    </RowTemplate>
+</ItemList>

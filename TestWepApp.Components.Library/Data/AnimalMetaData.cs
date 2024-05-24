@@ -16,7 +16,7 @@ namespace TestWepApp.Components.Library.Data
             => animal switch
             {
                 AnimalKind.Dog => new ComponentMetaData(typeof(DogComponent), new Dog().ToParameters()),
-                AnimalKind.Cat => new ComponentMetaData(typeof(CatComponent), new CatComponent().ToParameters()),
+                AnimalKind.Cat => new ComponentMetaData(typeof(CatComponent), new Cat().ToParameters()),
                 _ => null
             };
        

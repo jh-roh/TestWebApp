@@ -1,0 +1,36 @@
+﻿@typeparam TItem
+
+@if(Header is not null)
+{
+    <div class="header">
+        @Header
+    </div>
+}
+@foreach(TItem item in Items)
+{
+    <div class="row">
+        @RowTemplate(item)
+    </div>
+})
+
+@if(Footer is not null)
+{
+    <div class="footer">
+        @Footer
+    </div>
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? Header { get; set; }
+
+    [Parameter]
+    public RenderFragment<TItem> RowTemplate { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment? Footer { get; set; }
+    
+    [Parameter]
+    public IEnumerable<TItem> Items { get; set; } = default!;
+
+}

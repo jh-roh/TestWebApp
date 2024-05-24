@@ -1,6 +1,7 @@
 ﻿@* 페이지 라우팅 *@
  
 @page "/"
+@using TestWepApp.Components.Library.Components.Advanced.Pages
 
 
 @* 해당 페이지를 불러 왔을 때, 브라우저 상단 탭에 있는 이름을 변경 가능 *@
@@ -188,7 +189,10 @@ Welcome to your new app.
 
 <img src="_content/TestWepApp.Components.Library/image/348261.png" alt="cloud" />
 
-
+<div>
+    <AnimalSelector />
+</div>
+    
 
 @code{
     class TableName
