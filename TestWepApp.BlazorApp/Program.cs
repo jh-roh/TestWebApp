@@ -37,7 +37,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<ConfigTable>();
 builder.Services.AddScoped<TableCell>();
 
-
+builder.Services.AddSingleton<IProductService, HardCodedProductsService>();
 var app = builder.Build();
 
 
