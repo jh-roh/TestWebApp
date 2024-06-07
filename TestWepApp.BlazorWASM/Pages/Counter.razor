@@ -1,0 +1,48 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<b>Name :</b> @Name
+<b>Name with salutation:</b> @(Gender == "Male" ? "Mr." : "Ms.") @Name)
+<b>Name :</b> <input value="@Name" />
+
+<b>Name :</b>
+@* <input value="@Name" @onchange="@(e => {Name = e.Value.ToString();})" /> *@
+@* <input @bind="Name" /> *@
+<input @bind="Name" @bind:event="oninput" />
+<div @bind-style="Colour" @bind-style:event="onchange">
+    <h3>The background colour of this text changes</h3>
+</div>
+
+<div>
+    <textarea @bind="Description" @bind:event="oninput"></textarea>
+</div>
+
+<div>
+    Count : @Description.Length
+</div>
+
+
+
+@code {
+    private int currentCount = 0;
+
+    protected string Name { get; set; } = "Tom";
+
+    protected string Gender { get; set; } = "Male";
+
+    protected string Colour { get; set; } = "background-color: red; color: white;";
+
+    protected string Description { get; set; } = string.Empty;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

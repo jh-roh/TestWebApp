@@ -2,8 +2,11 @@
 {
     public enum Spiciness
     {
-        None = 0,
-        Spicy,
-        Hot
+        None,
+        Mild,
+        Medium,
+        Hot,
+        ExtraHot, // Added new value
+        Spicy
     }
 }

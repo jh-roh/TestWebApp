@@ -70,6 +70,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestWebApp_TestCode", "Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWepApp.Components.Library", "TestWepApp.Components.Library\TestWepApp.Components.Library.csproj", "{4536FED3-7DA4-47F8-9506-DB100F46B6CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWepApp.BlazorWASM", "TestWepApp.BlazorWASM\TestWepApp.BlazorWASM.csproj", "{C2F48656-9772-44D5-A820-885217A25A17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -164,6 +166,10 @@ Global
 		{4536FED3-7DA4-47F8-9506-DB100F46B6CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4536FED3-7DA4-47F8-9506-DB100F46B6CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4536FED3-7DA4-47F8-9506-DB100F46B6CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F48656-9772-44D5-A820-885217A25A17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F48656-9772-44D5-A820-885217A25A17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F48656-9772-44D5-A820-885217A25A17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F48656-9772-44D5-A820-885217A25A17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

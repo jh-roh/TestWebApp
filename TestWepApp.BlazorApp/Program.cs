@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using TestWepApp.BlazorApp.Areas.Identity;
 using TestWepApp.BlazorApp.Data;
+using TestWepApp.BlazorApp.Data.LifeTime;
 using TestWepApp.BlazorApp.Models.Candidates;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +39,19 @@ builder.Services.AddScoped<ConfigTable>();
 builder.Services.AddScoped<TableCell>();
 
 builder.Services.AddSingleton<IProductService, HardCodedProductsService>();
+
+builder.Services.AddSingleton<SingletonService>();
+builder.Services.AddTransient<TransientService>();
+builder.Services.AddScoped<ScopedService>();
+
+
+builder.Services
+ .AddTransient<IMenuService, HardCodedMenuService>();
+
+builder.Services
+ .AddTransient<IOrderService, ConsoleOrderService>();
+
+
 var app = builder.Build();
 
 

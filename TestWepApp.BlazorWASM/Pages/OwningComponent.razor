@@ -1,0 +1,14 @@
+﻿@inherits OwningComponentBase
+
+<h3>OwningComponent</h3>
+GUID : @scopedService.Guid
+
+
+@code {
+    private ScopedService scopedService;
+
+    protected override void OnInitialized()
+    {
+        scopedService = ScopedServices.GetService<ScopedService>();
+    }
+}

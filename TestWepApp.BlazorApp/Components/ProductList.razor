@@ -1,4 +1,5 @@
-﻿@inject IProductService productsService
+﻿@page "/productlist"
+@inject IProductService productsService
 <h3>ProductList</h3>
 
 @foreach(var product in productsService.GetProducts())
