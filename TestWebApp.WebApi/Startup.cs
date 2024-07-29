@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +35,55 @@ namespace TestWebApp.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestWebApp.WebApi", Version = "v1" });
             });
+
+            //services.AddControllersWithViews();
+
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("RequireAdministratorRole",
+            //        policy =>
+            //        {
+            //            policy.RequireRole("Administrator");
+            //            policy.RequireClaim("Coding-Skill", "ASP.NET Core MVC");
+
+            //        });
+
+            //});
+
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            //        {
+            //            options.LoginPath = "/Home/Login";
+            //            options.Cookie.Name = "WebApi.Cookie";
+            //        });
+
+
+            // Add authentication services with cookie authentication
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Login";
+                    options.LogoutPath = "/Account/Logout";
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                });
+
+            // Add authorization services
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Admin"));
+            });
+
+            // Add MVC services
+            services.AddControllersWithViews();
+
+            // Add Blazor services
+            services.AddRazorPages();
+            services.AddServerSideBlazor()
+                .AddCircuitOptions(options => { options.DetailedErrors = true; });
+
+
+            // 기본 AuthenticationStateProvider를 사용합니다.
+            services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,12 +99,17 @@ namespace TestWebApp.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/_Host");
             });
         }
     }

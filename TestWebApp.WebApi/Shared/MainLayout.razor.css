@@ -1,0 +1,12 @@
+﻿.page {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
