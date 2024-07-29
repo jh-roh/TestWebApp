@@ -26,6 +26,7 @@ namespace TestWepApp.BlazorApp.Controllers
         [HttpGet("/pizzas")]
         public IQueryable<Pizza> GetPizzas() => db.Pizzas;
 
+        [HttpPost("/createpizza")]
         public IActionResult InsertPizza([FromBody] Pizza pizza)
         {
             db.Pizzas.Add(pizza);
