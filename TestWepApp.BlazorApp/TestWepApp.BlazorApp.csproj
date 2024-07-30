@@ -29,4 +29,12 @@
     <ProjectReference Include="..\TestWepApp.Components.Library\TestWepApp.Components.Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Candidates\Edit.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Candidates\Edit.razor" />
+  </ItemGroup>
+
 </Project>
