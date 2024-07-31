@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestWepApp.BlazorApp.Models.Candidates;
 
@@ -11,9 +12,11 @@ using TestWepApp.BlazorApp.Models.Candidates;
 namespace TestWepApp.BlazorApp.Migrations
 {
     [DbContext(typeof(CandidateAppDbContext))]
-    partial class CandidateAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240731025046_RowVersion")]
+    partial class RowVersion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

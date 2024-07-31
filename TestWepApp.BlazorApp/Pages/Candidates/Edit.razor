@@ -1,11 +1,31 @@
 ﻿@page "/Candidates/Edit/{Id:int}"
 @inject IDbContextFactory<CandidateAppDbContext> _ContextFactory
+@inject NavigationManager _NavigationManager
+@inject ProtectedLocalStorage _LocalStorage
+
 
 <PageTitle>Candidate Edit</PageTitle>
+
 
 <h1>Edit</h1>
 
 <h4>Candidate</h4>
+
+
+
+@if (!String.IsNullOrEmpty(StatusMessage))
+{
+    var statusMessageClass = StatusMessage.StartsWith("Error") ? "danger" : "success";
+
+    <div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">@StatusMessage</span>
+        </button>
+
+    </div>
+}
+
+
 <hr />
 @if(Model is null && !Busy)
 {
@@ -23,7 +43,7 @@ else
     
     <div class="row">
         <div class="col-md-4">
-            <TestWepApp.BlazorApp.Pages.Candidates.Components.EditorForm Model="@Model" Busy="@Busy">
+            <TestWepApp.BlazorApp.Pages.Candidates.Components.EditorForm Model="@Model" Busy="@Busy" IsEdit="true" OnSubmitCallback="OnSubmitCallBack" OnCancleCallback="OnCancleCallBack">
 
 
             </TestWepApp.BlazorApp.Pages.Candidates.Components.EditorForm>
@@ -43,6 +63,8 @@ else
     [Parameter]
     public int Id { get; set; }
 
+    public string? StatusMessage { get; set; }
+
     public Candidate? Model { get; set; }
 
     public bool Busy { get; set; }  
@@ -54,7 +76,7 @@ else
         {
             using(var context = _ContextFactory.CreateDbContext())
             {
-                Model = await context.Candidates.FirstOrDefaultAsync(p => p.Id == Id);
+                Model = await context.Candidates.AsNoTracking().FirstOrDefaultAsync(p => p.Id == Id);
             }
 
         }
@@ -62,5 +84,49 @@ else
         {
             Busy = false;
         }
+    }
+
+    private async Task OnSubmitCallBack(bool isValid)
+    {
+        if(Model is null || !isValid)
+        {
+            return;
+        }
+
+        Busy = true;
+
+        try
+        {
+            using(var ctx = _ContextFactory.CreateDbContext())
+            {
+                ctx.Candidates.Update(Model);
+                await ctx.SaveChangesAsync();
+            }
+
+            StatusMessage = "Success";
+
+
+            await OnCancleCallBack();
+        }
+        catch(DbUpdateConcurrencyException ex)
+        {
+            StatusMessage = $"Error - 이미 변경되었습니다. 새로고침 후 다시 시도하세요. {ex.Message}";
+        }
+        catch(Exception ex)
+        {
+            StatusMessage = ex.Message;
+        }
+        finally
+        {
+            Busy = false;
+        }
+    }
+
+    private async Task OnCancleCallBack()
+    {
+        var result = await _LocalStorage.GetAsync<int>("Page");
+        var currentPage = result.Success ? result.Value : 1;
+
+        _NavigationManager.NavigateTo($"/Candidates/{currentPage}");
     }
 }

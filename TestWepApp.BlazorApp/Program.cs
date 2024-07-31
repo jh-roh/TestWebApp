@@ -116,6 +116,13 @@ static void CandidateSeedData(WebApplication app)
         {
             candidateDbContext.Candidates.Add(new Candidate { FirstName = "길동", LastName = "홍", IsEnrollment = false });
             candidateDbContext.Candidates.Add(new Candidate { FirstName = "두산", LastName = "백", IsEnrollment = false });
+
+            // 추가 seed data 생성
+            for (int i = 0; i < 30; i++)
+            {
+                candidateDbContext.Candidates.Add(new Candidate { FirstName = $"이름{i + 1}", LastName = $"성{i + 1}", IsEnrollment = false });
+            }
+
             candidateDbContext.SaveChanges();
         }
     }

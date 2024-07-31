@@ -61,6 +61,7 @@
     <Folder Include="Users" />
     <Folder Include="Users\Stored Procedures" />
     <Folder Include="Users\Tables" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Users\Stored Procedures\GetUsers.sql" />
@@ -70,5 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="TestWebApp.Database.publish.xml" />
+    <None Include="Scripts\CandidatesAppDbContext.sql" />
   </ItemGroup>
 </Project>

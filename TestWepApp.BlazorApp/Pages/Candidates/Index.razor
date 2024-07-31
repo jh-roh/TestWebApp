@@ -3,11 +3,12 @@
 @page "/Candidates/Index/{Page:int?}"
 @page "/Candidates/List/{Page:int?}"
 
-@using Microsoft.EntityFrameworkCore;
-@using TestWepApp.BlazorApp.Models.Candidates;
 @*@inject CandidateAppDbContext _Context*@
 @inject IDbContextFactory<CandidateAppDbContext> _ContextFactory
 @inject NavigationManager _NavigationManagerInjector
+
+@inject ProtectedLocalStorage _LocalStorage
+@inject IJSRuntime _JSRuntime
 
 <PageTitle>Candidate List</PageTitle>
  
@@ -54,9 +55,8 @@ else
                         <input class="check-box"  type="checkbox" checked="@m.IsEnrollment" />
                     </td>
                     <td>
-                        <a href="/Candidates/Edit/@m.Id">Edit</a> |
-                        <a href="/Candidates/Details/@m.Id">Details</a> |
-                        <a href="/Candidates/Delete/@m.Id">Delete</a>
+                        <a href="/Candidates/Edit/@m.Id" class="btn btn-primary btn-sm">Edit</a> |
+                        <input type="button" class="btn btn-danger btn-sm" @onclick="() => DeleteBy(m)" value="Delete"/> 
                     </td>
                 </tr>
             }
@@ -69,10 +69,19 @@ else
         <li class="page-item @((Page == 1 ? "disabled" : ""))">
             <a class="page-link" href="/candidates/@(Page - 1)">Prev</a>
         </li>
+        @{
+            int start = PageIndex / (int)5 * 5 + 1;
+            int end = (PageIndex / (int)5 + 1) * 5;
+        }
 
-        @for(int i = 1; i <= PageCount; i++)
+        @for(int i = start; i <= end; i++)
         {
-            <li class="page-item @((i == (PageIndex + 1) ? "active" : ""))">
+            var currentNumber = i;
+            if(i > PageCount)
+            {
+                break;
+            }
+            <li class="page-item @((i == Page ? "active" : ""))">
                 <a class="page-link" href="/candidates/@i">@i</a>
             </li>
         }
@@ -113,7 +122,12 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        if(Page is null or < 1)
+        await DisplayData();
+    }
+
+    public async Task DisplayData()
+    {
+        if (Page is null or < 1)
         {
             //Page = 1;
 
@@ -132,12 +146,12 @@ else
         //0을 정수로 나누면, DividedByZeroException, 0을 실수로 나누면 결과는 0이 됨
         PageCount = Convert.ToInt32(Math.Ceiling(RecordCount / (double)PageSize));
 
-        if(PageCount == 0)
+        if (PageCount == 0)
         {
             PageCount = 1;
         }
 
-        if(Page > PageCount)
+        if (Page > PageCount)
         {
             _NavigationManagerInjector.NavigateTo($"/Candidates/List/{PageCount}");
             return;
@@ -150,5 +164,37 @@ else
     }
 
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
 
+        //현재 페이지 번호를 상태 데이터에 저장
+        await _LocalStorage.SetAsync("Page", Page.Value);
+
+        // return base.OnAfterRenderAsync(firstRender);
+    }
+
+    protected async Task DeleteBy(Candidate model)
+    {
+        bool isDelete = await _JSRuntime.InvokeAsync<bool>("confirm","Are you sure you want to delete?");
+
+        if(isDelete == true)
+        {
+            try
+            {
+                using var context = _ContextFactory.CreateDbContext();
+
+                context.Candidates.Remove(model);
+
+                await context.SaveChangesAsync();
+
+            }
+            catch(DbUpdateConcurrencyException ex)
+            {
+                //Empty
+            }
+
+            
+            await DisplayData();
+        }
+    }
 }
