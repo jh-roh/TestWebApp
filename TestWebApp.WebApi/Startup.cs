@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestWebApp.WebApi.MiddleWare;
 
 namespace TestWebApp.WebApi
 {
@@ -102,6 +104,20 @@ namespace TestWebApp.WebApi
             app.UseAuthentication();
             app.UseAuthorization();
 
+
+            app.UseMiddleware<CustomMiddleWare>();
+            
+            //app.Use(async (context, next) =>             {
+                
+            //    if(context.Request.Method == Microsoft.AspNetCore.Http.HttpMethods.Get
+            //    && context.Request.Query["mdw"] == "test")
+            //    {
+            //        context.Response.ContentType = "text/plain";
+            //        await context.Response.WriteAsync("Hello from custom middleware");
+            //    }
+            //    await next();
+            //});
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -110,6 +126,11 @@ namespace TestWebApp.WebApi
 
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
+
+                endpoints.MapGet("/", async context => {
+                    
+                    await context.Response.WriteAsync("Hello World!");
+                });
             });
         }
     }
