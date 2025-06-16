@@ -183,6 +183,10 @@ namespace TestWebApp.WebApi
                     }
                 });
 
+                //endpoints.MapGet("/", async context => {
+
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
                 //endpoints.MapGet("routing", async context =>
                 //{
                 //    await context.Response.WriteAsync("Request Was Routed");
