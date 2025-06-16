@@ -1,18 +1,29 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using TestWebApp.WebApi.Model;
 
 namespace TestWebApp.WebApi.Controllers
 {
     public class HomeController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        private readonly IOptions<Member> _memOpts;
+
+        public HomeController(IOptions<Member> memOpts)
+        {
+            _memOpts = memOpts;
+        }
+
+        public IActionResult Index()
+        {
+            var opts = _memOpts.Value;
+
+            return View(opts);
+        }
 
         //public IActionResult Login()
         //{

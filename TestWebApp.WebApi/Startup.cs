@@ -10,12 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TestWebApp.WebApi.MiddleWare;
+using TestWebApp.WebApi.Model;
 using TestWebApp.WebApi.Services;
 
 namespace TestWebApp.WebApi
@@ -92,6 +94,11 @@ namespace TestWebApp.WebApi
             services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
             services.AddScoped<ScriptService>();
 
+
+            services.Configure<Member>(options =>
+            {
+                options.MemberName = "homg";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -111,10 +118,10 @@ namespace TestWebApp.WebApi
             app.UseAuthorization();
 
 
-            app.UseMiddleware<CustomMiddleWare>();
-            
+            //app.UseMiddleware<CustomMiddleWare>();
+
             //app.Use(async (context, next) =>             {
-                
+
             //    if(context.Request.Method == Microsoft.AspNetCore.Http.HttpMethods.Get
             //    && context.Request.Query["mdw"] == "test")
             //    {
@@ -123,6 +130,40 @@ namespace TestWebApp.WebApi
             //    }
             //    await next();
             //});
+
+
+
+            //app.Use(async (context, next) =>
+            //{
+            //    if(context.Request.Path == "/short")
+            //    {
+            //        await context.Response.WriteAsync($"Request Short Circuited");
+            //    }
+            //    else
+            //    {
+            //        await next();
+
+            //    }
+            //});
+
+            //app.Use(async (context, next) =>
+            //{
+            //    await next();
+
+            //    await context.Response.WriteAsync($"\nStatus Code: {context.Response.StatusCode}");
+            //});
+
+            //app.Map("/branch", branch =>
+            //{
+            //    branch.UseMiddleware<CustomMiddleWare>();
+
+            //    branch.Use(async (HttpContext context, Func<Task> next) =>
+            //    {
+            //        await context.Response.WriteAsync($"Branch MiddleWare");
+            //    });
+            //});
+
+            app.UseMiddleware<MemberMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
@@ -133,11 +174,36 @@ namespace TestWebApp.WebApi
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
 
-                endpoints.MapGet("/", async context => {
-                    
-                    await context.Response.WriteAsync("Hello World!");
+
+                endpoints.MapGet("{first}/{second}/{third}", async context =>
+                {
+                    foreach(var value in context.Request.RouteValues)
+                    {
+                        await context.Response.WriteAsync($"{value.Key}: {value.Value}\n");
+                    }
                 });
+
+                //endpoints.MapGet("routing", async context =>
+                //{
+                //    await context.Response.WriteAsync("Request Was Routed");
+                //});
+
+                //endpoints.MapGet("/", async context => {
+
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
+
+                //NET 6.0 이상에서 사용가능
+                //endpoints.MapGet("/member", async (HttpContext context, IOptions<Member> memOpts) =>
+                //{
+                //    Member opts = memOpts.Value;
+
+                //    await context.Response.WriteAsync($"{opts.MemberName}, {opts.MemberGroup}");
+                //});
             });
+
+
+           
         }
     }
 }
