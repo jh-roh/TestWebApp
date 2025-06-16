@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TestWebApp.WebApi.MiddleWare;
+using TestWebApp.WebApi.Services;
 
 namespace TestWebApp.WebApi
 {
@@ -84,8 +85,13 @@ namespace TestWebApp.WebApi
                 .AddCircuitOptions(options => { options.DetailedErrors = true; });
 
 
+
+            services.AddMemoryCache();
+
             // 기본 AuthenticationStateProvider를 사용합니다.
             services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
+            services.AddScoped<ScriptService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
